@@ -245,6 +245,8 @@ type
     MissingCrossLibs:boolean;
     MissingTools:boolean;
     InternalError:string;
+    FRunning:boolean;
+    FCloseRequested:boolean;
     {$ifdef RemoteLog}
     sConsentWarning:boolean;
     aDataClient:TDataClient;
@@ -1561,10 +1563,8 @@ begin
     exit;
   end;
                 StatusMessage.Text := 'Stopped/Aborted';
-  if Assigned(FPCupManager.Sequencer) then
-  begin
+  if Assigned(FPCupManager) and Assigned(FPCupManager.Sequencer) then
     FPCupManager.Sequencer.Kill;
-  end;
 end;
 
 procedure TForm1.btnGetOpenSSLClick(Sender: TObject);
@@ -4155,6 +4155,16 @@ end;
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   Self.OnResize:=nil;
+
+  if FRunning then
+  begin
+    if Assigned(FPCupManager) and Assigned(FPCupManager.Sequencer) then
+      FPCupManager.Sequencer.Kill;
+    FCloseRequested:=true;
+    CloseAction:=caNone;
+    exit;
+  end;
+
   if Assigned(FPCupManager) then
   begin
     Application.MainForm.Cursor:=crHourGlass;
@@ -4512,6 +4522,7 @@ begin
 
   if SettingsForm.SaveScript then FPCupManager.SaveSettings;
 
+  FRunning:=true;
   BitBtnHalt.Enabled:=true;
   try
     {$ifdef READER}
@@ -4626,6 +4637,9 @@ begin
   end;
 
   BitBtnHalt.Enabled:=false;
+  FRunning:=false;
+  if FCloseRequested then
+    Close;
 end;
 
 function TForm1.GetFPCUPSettings(IniDirectory:string):boolean;

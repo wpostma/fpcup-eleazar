@@ -87,3 +87,4 @@ lib*/
 !/fpcuptools/*
 !/libQt5Pas*
 !/libQt6Pas*
+.claude/settings.local.json
