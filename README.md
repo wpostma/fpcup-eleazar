@@ -78,6 +78,11 @@ Cross compiler extensions
 Fpcupdeluxe has a facility to extend its functionality building and using cross compiling modules.
 
 
+Documentation
+=============
+
+[CODE-OVERVIEW.md](CODE-OVERVIEW.md)
+
 Contact
 =======
 Warren Postma <warren.postma@gmail.com
