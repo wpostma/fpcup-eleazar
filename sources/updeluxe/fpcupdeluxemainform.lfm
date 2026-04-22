@@ -84,7 +84,7 @@ object Form1: TForm1
         Hint = 'Will install/update the selected version of both FPC and Lazarus.'
         Top = 224
         Width = 301
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = [akTop, akRight]
         BorderSpacing.Left = 12
         BorderSpacing.Top = 9
         BorderSpacing.Right = 12

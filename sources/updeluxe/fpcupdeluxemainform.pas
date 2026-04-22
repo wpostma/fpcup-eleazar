@@ -766,25 +766,25 @@ var
 begin
   //if Assigned(Form3) then Form3.Destroy;
   //if Assigned(SettingsForm) then SettingsForm.Destroy;
-//
-//  with listModules do
-//  begin
-//    for i:=Pred(Count) downto 0 do
-//      if Assigned(Items.Objects[i]) then
-//        StrDispose(Pchar(Items.Objects[i]));
-//  end;
-//  with ComboBoxFPCTargetTag do
-//  begin
-//    for i:=Pred(Count) downto 0 do
-//      if Assigned(Items.Objects[i]) then
-//        StrDispose(Pchar(Items.Objects[i]));
-//  end;
-//  with ListBoxLazarusTargetTag do
-//  begin
-//    for i:=Pred(Count) downto 0 do
-//      if Assigned(Items.Objects[i]) then
-//        StrDispose(Pchar(Items.Objects[i]));
-//  end;
+
+  with listModules do
+  begin
+    for i:=Pred(Count) downto 0 do
+      if Assigned(Items.Objects[i]) then
+        StrDispose(Pchar(Items.Objects[i]));
+  end;
+  with ComboBoxFPCTargetTag do
+  begin
+    for i:=Pred(Count) downto 0 do
+      if Assigned(Items.Objects[i]) then
+        StrDispose(Pchar(Items.Objects[i]));
+  end;
+  with ListBoxLazarusTargetTag do
+  begin
+    for i:=Pred(Count) downto 0 do
+      if Assigned(Items.Objects[i]) then
+        StrDispose(Pchar(Items.Objects[i]));
+  end;
 
 
   {$ifdef RemoteLog}
