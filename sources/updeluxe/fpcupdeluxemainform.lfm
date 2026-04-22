@@ -1,961 +1,184 @@
 object Form1: TForm1
   Left = 195
-  Height = 645
+  Height = 912
   Top = 154
-  Width = 1190
+  Width = 855
   Anchors = []
   Caption = 'FPCUPdeluxe'
-  ClientHeight = 645
-  ClientWidth = 1190
-  Constraints.MinHeight = 480
-  Constraints.MinWidth = 970
+  ClientHeight = 912
+  ClientWidth = 855
+  Constraints.MinHeight = 600
+  Constraints.MinWidth = 600
+  DesignTimePPI = 144
   Menu = MainMenu1
-  LCLVersion = '4.6.0.0'
+  LCLVersion = '4.99.0.0'
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  object StatusMessage: TEdit
-    AnchorSideLeft.Control = RealFPCURL
-    AnchorSideTop.Control = RealFPCURL
-    AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = CheckAutoClear
-    Left = 330
-    Height = 23
-    Top = 33
-    Width = 592
-    Anchors = [akTop, akLeft, akRight]
-    BorderSpacing.Top = 6
-    BorderSpacing.Right = 12
-    Constraints.MinWidth = 120
-    ParentFont = False
-    ReadOnly = True
-    TabOrder = 7
-    Text = 'Sitting and waiting'
-  end
-  object CheckAutoClear: TCheckBox
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = StatusMessage
-    AnchorSideTop.Side = asrCenter
-    AnchorSideRight.Control = btnSendLog
-    Left = 934
-    Height = 19
-    Top = 35
-    Width = 72
-    Anchors = [akTop, akRight]
-    BorderSpacing.Right = 12
-    Caption = 'Auto clear'
-    Checked = True
-    ParentFont = False
-    State = cbChecked
-    TabOrder = 10
-  end
-  object btnClearLog: TButton
-    AnchorSideTop.Control = StatusMessage
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
-    Left = 1105
-    Height = 25
-    Top = 33
-    Width = 73
-    Anchors = [akTop, akRight]
-    AutoSize = True
-    BorderSpacing.Right = 12
-    Caption = 'Clear log'
-    ParentFont = False
-    TabOrder = 9
-    OnClick = btnLogClick
-  end
-  inline CommandOutputScreen: TSynEdit
-    AnchorSideLeft.Control = StatusMessage
-    AnchorSideTop.Control = StatusMessage
-    AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = memoSummary
-    Left = 330
-    Height = 391
-    Top = 62
-    Width = 848
-    BorderSpacing.Top = 6
-    BorderSpacing.Right = 12
-    BorderSpacing.Bottom = 8
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    Constraints.MinHeight = 80
-    Constraints.MinWidth = 120
-    Color = clBlack
-    Font.CharSet = ANSI_CHARSET
-    Font.Color = clLime
-    Font.Height = -13
-    Font.Name = 'Monospace'
-    Font.Pitch = fpFixed
-    Font.Quality = fqCleartype
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    TabOrder = 4
-    OnMouseWheel = CommandOutputScreenMouseWheel
-    Gutter.AutoSize = False
-    Gutter.Visible = False
-    Gutter.Width = 55
-    Gutter.MouseActions = <>
-    RightGutter.AutoSize = False
-    RightGutter.Visible = False
-    RightGutter.Width = 0
-    RightGutter.MouseActions = <>
-    HideSelection = True
-    InsertCaret = ctBlock
-    InsertMode = False
-    Keystrokes = <    
-      item
-        Command = ecUp
-        ShortCut = 38
-      end    
-      item
-        Command = ecSelUp
-        ShortCut = 8230
-      end    
-      item
-        Command = ecScrollUp
-        ShortCut = 16422
-      end    
-      item
-        Command = ecDown
-        ShortCut = 40
-      end    
-      item
-        Command = ecSelDown
-        ShortCut = 8232
-      end    
-      item
-        Command = ecScrollDown
-        ShortCut = 16424
-      end    
-      item
-        Command = ecLeft
-        ShortCut = 37
-      end    
-      item
-        Command = ecSelLeft
-        ShortCut = 8229
-      end    
-      item
-        Command = ecWordLeft
-        ShortCut = 16421
-      end    
-      item
-        Command = ecSelWordLeft
-        ShortCut = 24613
-      end    
-      item
-        Command = ecRight
-        ShortCut = 39
-      end    
-      item
-        Command = ecSelRight
-        ShortCut = 8231
-      end    
-      item
-        Command = ecWordRight
-        ShortCut = 16423
-      end    
-      item
-        Command = ecSelWordRight
-        ShortCut = 24615
-      end    
-      item
-        Command = ecPageDown
-        ShortCut = 34
-      end    
-      item
-        Command = ecSelPageDown
-        ShortCut = 8226
-      end    
-      item
-        Command = ecPageBottom
-        ShortCut = 16418
-      end    
-      item
-        Command = ecSelPageBottom
-        ShortCut = 24610
-      end    
-      item
-        Command = ecPageUp
-        ShortCut = 33
-      end    
-      item
-        Command = ecSelPageUp
-        ShortCut = 8225
-      end    
-      item
-        Command = ecPageTop
-        ShortCut = 16417
-      end    
-      item
-        Command = ecSelPageTop
-        ShortCut = 24609
-      end    
-      item
-        Command = ecLineStart
-        ShortCut = 36
-      end    
-      item
-        Command = ecSelLineStart
-        ShortCut = 8228
-      end    
-      item
-        Command = ecEditorTop
-        ShortCut = 16420
-      end    
-      item
-        Command = ecSelEditorTop
-        ShortCut = 24612
-      end    
-      item
-        Command = ecLineEnd
-        ShortCut = 35
-      end    
-      item
-        Command = ecSelLineEnd
-        ShortCut = 8227
-      end    
-      item
-        Command = ecEditorBottom
-        ShortCut = 16419
-      end    
-      item
-        Command = ecSelEditorBottom
-        ShortCut = 24611
-      end    
-      item
-        Command = ecToggleMode
-        ShortCut = 45
-      end    
-      item
-        Command = ecCopy
-        ShortCut = 16429
-      end    
-      item
-        Command = ecPaste
-        ShortCut = 8237
-      end    
-      item
-        Command = ecDeleteChar
-        ShortCut = 46
-      end    
-      item
-        Command = ecCut
-        ShortCut = 8238
-      end    
-      item
-        Command = ecDeleteLastChar
-        ShortCut = 8
-      end    
-      item
-        Command = ecDeleteLastChar
-        ShortCut = 8200
-      end    
-      item
-        Command = ecDeleteLastWord
-        ShortCut = 16392
-      end    
-      item
-        Command = ecUndo
-        ShortCut = 32776
-      end    
-      item
-        Command = ecRedo
-        ShortCut = 40968
-      end    
-      item
-        Command = ecLineBreak
-        ShortCut = 13
-      end    
-      item
-        Command = ecSelectAll
-        ShortCut = 16449
-      end    
-      item
-        Command = ecCopy
-        ShortCut = 16451
-      end    
-      item
-        Command = ecBlockIndent
-        ShortCut = 24649
-      end    
-      item
-        Command = ecLineBreak
-        ShortCut = 16461
-      end    
-      item
-        Command = ecInsertLine
-        ShortCut = 16462
-      end    
-      item
-        Command = ecDeleteWord
-        ShortCut = 16468
-      end    
-      item
-        Command = ecBlockUnindent
-        ShortCut = 24661
-      end    
-      item
-        Command = ecPaste
-        ShortCut = 16470
-      end    
-      item
-        Command = ecCut
-        ShortCut = 16472
-      end    
-      item
-        Command = ecDeleteLine
-        ShortCut = 16473
-      end    
-      item
-        Command = ecDeleteEOL
-        ShortCut = 24665
-      end    
-      item
-        Command = ecUndo
-        ShortCut = 16474
-      end    
-      item
-        Command = ecRedo
-        ShortCut = 24666
-      end    
-      item
-        Command = ecGotoMarker0
-        ShortCut = 16432
-      end    
-      item
-        Command = ecGotoMarker1
-        ShortCut = 16433
-      end    
-      item
-        Command = ecGotoMarker2
-        ShortCut = 16434
-      end    
-      item
-        Command = ecGotoMarker3
-        ShortCut = 16435
-      end    
-      item
-        Command = ecGotoMarker4
-        ShortCut = 16436
-      end    
-      item
-        Command = ecGotoMarker5
-        ShortCut = 16437
-      end    
-      item
-        Command = ecGotoMarker6
-        ShortCut = 16438
-      end    
-      item
-        Command = ecGotoMarker7
-        ShortCut = 16439
-      end    
-      item
-        Command = ecGotoMarker8
-        ShortCut = 16440
-      end    
-      item
-        Command = ecGotoMarker9
-        ShortCut = 16441
-      end    
-      item
-        Command = ecSetMarker0
-        ShortCut = 24624
-      end    
-      item
-        Command = ecSetMarker1
-        ShortCut = 24625
-      end    
-      item
-        Command = ecSetMarker2
-        ShortCut = 24626
-      end    
-      item
-        Command = ecSetMarker3
-        ShortCut = 24627
-      end    
-      item
-        Command = ecSetMarker4
-        ShortCut = 24628
-      end    
-      item
-        Command = ecSetMarker5
-        ShortCut = 24629
-      end    
-      item
-        Command = ecSetMarker6
-        ShortCut = 24630
-      end    
-      item
-        Command = ecSetMarker7
-        ShortCut = 24631
-      end    
-      item
-        Command = ecSetMarker8
-        ShortCut = 24632
-      end    
-      item
-        Command = ecSetMarker9
-        ShortCut = 24633
-      end    
-      item
-        Command = EcFoldLevel1
-        ShortCut = 41009
-      end    
-      item
-        Command = EcFoldLevel2
-        ShortCut = 41010
-      end    
-      item
-        Command = EcFoldLevel3
-        ShortCut = 41011
-      end    
-      item
-        Command = EcFoldLevel4
-        ShortCut = 41012
-      end    
-      item
-        Command = EcFoldLevel5
-        ShortCut = 41013
-      end    
-      item
-        Command = EcFoldLevel6
-        ShortCut = 41014
-      end    
-      item
-        Command = EcFoldLevel7
-        ShortCut = 41015
-      end    
-      item
-        Command = EcFoldLevel8
-        ShortCut = 41016
-      end    
-      item
-        Command = EcFoldLevel9
-        ShortCut = 41017
-      end    
-      item
-        Command = EcFoldLevel0
-        ShortCut = 41008
-      end    
-      item
-        Command = EcFoldCurrent
-        ShortCut = 41005
-      end    
-      item
-        Command = EcUnFoldCurrent
-        ShortCut = 41003
-      end    
-      item
-        Command = EcToggleMarkupWord
-        ShortCut = 32845
-      end    
-      item
-        Command = ecNormalSelect
-        ShortCut = 24654
-      end    
-      item
-        Command = ecColumnSelect
-        ShortCut = 24643
-      end    
-      item
-        Command = ecLineSelect
-        ShortCut = 24652
-      end    
-      item
-        Command = ecTab
-        ShortCut = 9
-      end    
-      item
-        Command = ecShiftTab
-        ShortCut = 8201
-      end    
-      item
-        Command = ecMatchBracket
-        ShortCut = 24642
-      end    
-      item
-        Command = ecColSelUp
-        ShortCut = 40998
-      end    
-      item
-        Command = ecColSelDown
-        ShortCut = 41000
-      end    
-      item
-        Command = ecColSelLeft
-        ShortCut = 40997
-      end    
-      item
-        Command = ecColSelRight
-        ShortCut = 40999
-      end    
-      item
-        Command = ecColSelPageDown
-        ShortCut = 40994
-      end    
-      item
-        Command = ecColSelPageBottom
-        ShortCut = 57378
-      end    
-      item
-        Command = ecColSelPageUp
-        ShortCut = 40993
-      end    
-      item
-        Command = ecColSelPageTop
-        ShortCut = 57377
-      end    
-      item
-        Command = ecColSelLineStart
-        ShortCut = 40996
-      end    
-      item
-        Command = ecColSelLineEnd
-        ShortCut = 40995
-      end    
-      item
-        Command = ecColSelEditorTop
-        ShortCut = 57380
-      end    
-      item
-        Command = ecColSelEditorBottom
-        ShortCut = 57379
-      end>
-    MouseActions = <>
-    MouseTextActions = <>
-    MouseSelActions = <>
-    MaxLeftChar = 8096
-    MaxUndo = 0
-    Options = [eoHideRightMargin, eoNoCaret, eoShowSpecialChars]
-    Options2 = []
-    VisibleSpecialChars = []
-    ReadOnly = True
-    RightEdge = 8096
-    RightEdgeColor = clNone
-    SelectedColor.BackPriority = 50
-    SelectedColor.ForePriority = 50
-    SelectedColor.FramePriority = 50
-    SelectedColor.BoldPriority = 50
-    SelectedColor.ItalicPriority = 50
-    SelectedColor.UnderlinePriority = 50
-    SelectedColor.StrikeOutPriority = 50
-    IncrementColor.Background = clNone
-    IncrementColor.Foreground = clNone
-    HighlightAllColor.Background = clNone
-    HighlightAllColor.Foreground = clNone
-    BracketHighlightStyle = sbhsBoth
-    BracketMatchColor.Background = clNone
-    BracketMatchColor.Foreground = clNone
-    BracketMatchColor.Style = [fsBold]
-    FoldedCodeColor.Background = clNone
-    FoldedCodeColor.Foreground = clNone
-    FoldedCodeColor.FrameColor = clGray
-    FoldedCodeColor.FrameEdges = sfeNone
-    MouseLinkColor.Background = clNone
-    MouseLinkColor.Foreground = clBlue
-    LineHighlightColor.Background = clNone
-    LineHighlightColor.Foreground = clNone
-    LineHighlightColor.FrameEdges = sfeNone
-    OnSpecialLineMarkup = CommandOutputScreenSpecialLineMarkup
-    inline SynLeftGutterPartList1: TSynGutterPartList
-    end
-  end
-  object InstallDirEdit: TEdit
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = Owner
-    AnchorSideRight.Control = btnInstallDirSelect
-    Left = 12
-    Height = 23
-    Hint = 'Directory to install FPC and Lazarus'
-    Top = 4
-    Width = 201
-    Anchors = [akTop, akLeft, akRight]
-    BorderSpacing.Left = 12
-    BorderSpacing.Top = 4
-    BorderSpacing.Right = 6
-    ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 1
-  end
-  object btnInstallDirSelect: TButton
-    AnchorSideLeft.Control = InstallDirEdit
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = Owner
-    AnchorSideRight.Control = PageControl1
-    AnchorSideRight.Side = asrBottom
-    Left = 219
-    Height = 25
-    Top = 4
-    Width = 103
-    Anchors = [akTop, akRight]
-    AutoSize = True
-    BorderSpacing.Left = 6
-    BorderSpacing.Top = 4
-    Caption = 'Set install path'
-    ParentFont = False
-    TabOrder = 0
-    OnClick = btnInstallDirSelectClick
-  end
-  object RealFPCURL: TEdit
-    AnchorSideLeft.Control = btnInstallDirSelect
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = Owner
-    Left = 330
-    Height = 23
-    Hint = 'Double click to allow editing'
-    Top = 4
-    Width = 433
-    BorderSpacing.Left = 8
-    BorderSpacing.Top = 4
-    ParentFont = False
-    ParentShowHint = False
-    ReadOnly = True
-    ShowHint = True
-    TabOrder = 5
-  end
-  object RealLazURL: TEdit
-    AnchorSideLeft.Control = RealFPCURL
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = Owner
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
-    Left = 771
-    Height = 23
-    Hint = 'Double click to allow editing'
-    Top = 4
-    Width = 407
-    Anchors = [akTop, akLeft, akRight]
-    BorderSpacing.Left = 8
-    BorderSpacing.Top = 4
-    BorderSpacing.Right = 12
-    ParentFont = False
-    ParentShowHint = False
-    ReadOnly = True
-    ShowHint = True
-    TabOrder = 6
-  end
-  object Panel1: TPanel
-    AnchorSideLeft.Control = Owner
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = Owner
-    AnchorSideBottom.Side = asrBottom
-    Left = 6
-    Height = 56
-    Top = 585
-    Width = 1172
-    Align = alBottom
-    AutoSize = True
-    BorderSpacing.Left = 6
-    BorderSpacing.Right = 12
-    BorderSpacing.Bottom = 4
-    BorderSpacing.CellAlignHorizontal = ccaCenter
-    BorderSpacing.CellAlignVertical = ccaCenter
-    BevelInner = bvLowered
-    ClientHeight = 56
-    ClientWidth = 1172
-    Constraints.MinHeight = 50
-    ParentFont = False
-    TabOrder = 3
-    object WABtn: TBitBtn
-      AnchorSideLeft.Control = AndroidBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 413
-      Height = 42
-      Hint = 'Install FPC and Lazarus for Web Assembly'
-      Top = 8
-      Width = 81
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'WA'
-      Images = ImageList_32x32
-      ImageIndex = 7
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 9
-      OnClick = QuickBtnClick
-    end
-    object TrunkBtn: TBitBtn
-      AnchorSideLeft.Control = Panel1
-      AnchorSideTop.Control = Panel1
-      Left = 10
-      Height = 42
-      Hint = 'Will install/update trunk version of both FPC and Lazarus.'
-      Top = 8
-      Width = 92
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'Trunk'
-      Images = ImageList_32x32
-      ImageIndex = 4
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 0
-      OnClick = QuickBtnClick
-    end
-    object FixesBtn: TBitBtn
-      AnchorSideLeft.Control = TrunkBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 110
-      Height = 42
-      Hint = 'Will install/update current fixes versions of both FPC and Lazarus'
-      Top = 8
-      Width = 87
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'Fixes'
-      Images = ImageList_32x32
-      ImageIndex = 0
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 1
-      OnClick = QuickBtnClick
-    end
-    object StableBtn: TBitBtn
-      AnchorSideLeft.Control = FixesBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 205
-      Height = 42
-      Hint = 'Will install/update stable versions of both FPC and Lazarus'
-      Top = 8
-      Width = 94
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'Stable'
-      Images = ImageList_32x32
-      ImageIndex = 3
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 2
-      OnClick = QuickBtnClick
-    end
-    object AndroidBtn: TBitBtn
-      AnchorSideLeft.Control = StableBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 307
-      Height = 42
-      Hint = 'Will install/update FPC and Lazarus stable and LAMW'
-      Top = 8
-      Width = 98
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'LAMW'
-      Images = ImageList_32x32
-      ImageIndex = 6
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 3
-      OnClick = QuickBtnClick
-    end
-    object WioBtn: TBitBtn
-      AnchorSideLeft.Control = WABtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 502
-      Height = 42
-      Hint = 'Get FPC for SAMD51 embedded on Wio Terminal'
-      Top = 8
-      Width = 83
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'Wio'
-      Images = ImageList_32x32
-      ImageIndex = 14
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 4
-      Visible = False
-      OnClick = QuickBtnClick
-    end
-    object PicoBtn: TBitBtn
-      AnchorSideLeft.Control = WioBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 593
-      Height = 42
-      Hint = 'Get FPC for armv6m RPi Pico'
-      Top = 8
-      Width = 85
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'Pico'
-      Images = ImageList_32x32
-      ImageIndex = 12
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 5
-      OnClick = QuickBtnClick
-    end
-    object UltiboBtn: TBitBtn
-      AnchorSideLeft.Control = ESPBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 787
-      Height = 42
-      Hint = 'Install baremetal Ultibo for RPi2/3/4/5'
-      Top = 8
-      Width = 118
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Images = ImageList_88x32
-      ImageIndex = 1
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 6
-      OnClick = QuickBtnClick
-    end
-    object mORMotBtn: TBitBtn
-      AnchorSideLeft.Control = UltiboBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 929
-      Height = 42
-      Hint = 'Get the mORMot2 for FPC'
-      Top = 8
-      Width = 117
-      AutoSize = True
-      BorderSpacing.Left = 20
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'mORMot2'
-      Images = ImageList_32x32
-      ImageIndex = 11
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 7
-      OnClick = btnInstallModuleClick
-    end
-    object ESPBtn: TBitBtn
-      AnchorSideLeft.Control = PicoBtn
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Panel1
-      Left = 686
-      Height = 42
-      Hint = 'Get FPC for ESP32 [lx6] boards'
-      Top = 8
-      Width = 93
-      AutoSize = True
-      BorderSpacing.Left = 4
-      BorderSpacing.Top = 2
-      BorderSpacing.Around = 4
-      Caption = 'ESP32'
-      Images = ImageList_32x32
-      ImageIndex = 10
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 10
-      OnClick = QuickBtnClick
-    end
-    object BitBtnHalt: TBitBtn
-      AnchorSideTop.Control = Panel1
-      AnchorSideRight.Control = Panel1
-      AnchorSideRight.Side = asrBottom
-      Left = 1075
-      Height = 42
-      Hint = 'Try to stop current install process'
-      Top = 8
-      Width = 90
-      Anchors = [akTop, akRight]
-      AutoSize = True
-      BorderSpacing.Top = 2
-      BorderSpacing.Right = 1
-      BorderSpacing.Around = 4
-      Caption = 'STOP'
-      Enabled = False
-      Images = ImageList_32x32
-      ImageIndex = 5
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = True
-      TabOrder = 8
-      OnClick = BitBtnHaltClick
-    end
-  end
-  object memoSummary: TMemo
-    AnchorSideLeft.Control = CommandOutputScreen
-    AnchorSideRight.Control = Owner
-    AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = Panel1
-    Left = 330
-    Height = 120
-    Hint = 'Will show info and error'
-    Top = 461
-    Width = 848
-    Anchors = [akLeft, akRight, akBottom]
-    BorderSpacing.Right = 12
-    BorderSpacing.Bottom = 4
-    Constraints.MinWidth = 120
-    ParentFont = False
-    ParentShowHint = False
-    ReadOnly = True
-    ScrollBars = ssAutoVertical
-    TabOrder = 8
-    WordWrap = False
-  end
   object PageControl1: TPageControl
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = InstallDirEdit
     AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = btnInstallDirSelect
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = Panel1
-    Left = 12
-    Height = 546
-    Top = 35
-    Width = 310
-    ActivePage = BasicSheet
+    Left = 18
+    Height = 896
+    Top = 8
+    Width = 800
+    ActivePage = TabSheetStartNew
     Anchors = [akTop, akLeft, akBottom]
-    BorderSpacing.Left = 12
-    BorderSpacing.Top = 8
-    BorderSpacing.Bottom = 4
-    Constraints.MaxWidth = 310
-    Constraints.MinWidth = 220
+    BorderSpacing.Left = 18
+    BorderSpacing.Top = 12
+    BorderSpacing.Bottom = 6
+    Constraints.MaxWidth = 800
+    Constraints.MinWidth = 330
     ParentFont = False
     TabIndex = 0
-    TabOrder = 2
+    TabOrder = 0
     OnChange = PageControl1Change
+    object TabSheetStartNew: TTabSheet
+      Caption = 'Start'
+      ClientHeight = 858
+      ClientWidth = 792
+      object InstallDirEdit: TEdit
+        AnchorSideLeft.Control = Owner
+        AnchorSideTop.Control = Owner
+        AnchorSideRight.Control = btnInstallDirSelect
+        Left = 18
+        Height = 33
+        Hint = 'Directory to install FPC and Lazarus'
+        Top = 6
+        Width = 745
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 18
+        BorderSpacing.Top = 6
+        BorderSpacing.Right = 9
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+      end
+      object btnInstallDirSelect: TButton
+        AnchorSideLeft.Control = InstallDirEdit
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Owner
+        AnchorSideRight.Control = PageControl1
+        AnchorSideRight.Side = asrBottom
+        Left = 631
+        Height = 35
+        Top = 48
+        Width = 142
+        Anchors = [akTop, akRight]
+        AutoSize = True
+        BorderSpacing.Left = 9
+        BorderSpacing.Top = 6
+        Caption = 'Set install path'
+        ParentFont = False
+        TabOrder = 1
+        OnClick = btnInstallDirSelectClick
+      end
+      object BitBtnFPCandLazarus: TBitBtn
+        AnchorSideLeft.Control = BasicSheet
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = BasicSheet
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = btnSetupPlus
+        Left = 12
+        Height = 90
+        Hint = 'Will install/update the selected version of both FPC and Lazarus.'
+        Top = 704
+        Width = 376
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 9
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
+        Caption = 'Install/update FPC+Lazarus'
+        Constraints.MinHeight = 90
+        Layout = blGlyphTop
+        Margin = 5
+        Images = ImageList_88x32
+        ImageIndex = 0
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        OnClick = InstallClick
+      end
+      object RealFPCURL: TEdit
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Owner
+        Left = 32
+        Height = 33
+        Hint = 'Double click to allow editing'
+        Top = 160
+        Width = 654
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 6
+        ParentFont = False
+        ParentShowHint = False
+        ReadOnly = True
+        ShowHint = True
+        TabOrder = 3
+      end
+      object RealLazURL: TEdit
+        Left = 32
+        Height = 33
+        Hint = 'Double click to allow editing'
+        Top = 112
+        Width = 656
+        AutoSize = False
+        HideSelection = False
+        ParentFont = False
+        ParentShowHint = False
+        ReadOnly = True
+        ShowHint = True
+        TabOrder = 4
+        Text = 'URL'
+      end
+      object BitBtnHalt: TBitBtn
+        AnchorSideRight.Side = asrBottom
+        Left = 584
+        Height = 86
+        Hint = 'Try to stop current install process'
+        Top = 708
+        Width = 168
+        Anchors = [akRight, akBottom]
+        BorderSpacing.Top = 3
+        BorderSpacing.Right = 2
+        BorderSpacing.Around = 6
+        Caption = 'STOP'
+        Enabled = False
+        Images = ImageList_32x32
+        ImageIndex = 5
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 5
+        OnClick = BitBtnHaltClick
+      end
+      object memoSummary: TMemo
+        Left = 16
+        Height = 440
+        Hint = 'Will show info and error'
+        Top = 240
+        Width = 774
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Right = 18
+        BorderSpacing.Bottom = 6
+        Constraints.MinWidth = 180
+        ParentFont = False
+        ParentShowHint = False
+        ReadOnly = True
+        ScrollBars = ssAutoVertical
+        TabOrder = 6
+        WordWrap = False
+      end
+    end
     object BasicSheet: TTabSheet
       AnchorSideRight.Side = asrBottom
       Caption = 'Basic'
-      ClientHeight = 518
-      ClientWidth = 302
+      ClientHeight = 858
+      ClientWidth = 792
       ParentFont = False
       object FPCVersionLabel: TLabel
         AnchorSideLeft.Control = ListBoxFPCTarget
@@ -963,14 +186,14 @@ object Form1: TForm1
         AnchorSideRight.Control = BasicSheet
         AnchorSideRight.Side = asrCenter
         AnchorSideBottom.Control = ListBoxFPCTarget
-        Left = 8
-        Height = 18
-        Top = 54
-        Width = 87
-        BorderSpacing.Top = 54
+        Left = 12
+        Height = 27
+        Top = 81
+        Width = 131
+        BorderSpacing.Top = 81
         Caption = 'FPC version'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -24
         Font.Name = 'Arial'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -982,21 +205,21 @@ object Form1: TForm1
         AnchorSideTop.Control = FPCVersionLabel
         AnchorSideTop.Side = asrBottom
         AnchorSideBottom.Control = BitBtnFPCOnly
-        Left = 8
-        Height = 257
-        Top = 80
-        Width = 131
+        Left = 12
+        Height = 473
+        Top = 120
+        Width = 196
         Anchors = [akTop, akLeft, akBottom]
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Bottom = 8
-        Constraints.MinWidth = 80
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Bottom = 12
+        Constraints.MinWidth = 120
         ExtendedSelect = False
         ItemHeight = 0
         ParentFont = False
         ScrollWidth = 133
         Style = lbOwnerDrawFixed
-        TabOrder = 3
+        TabOrder = 2
         OnDrawItem = ListBoxTargetDrawItem
         OnSelectionChange = TargetSelectionChange
       end
@@ -1005,13 +228,13 @@ object Form1: TForm1
         AnchorSideTop.Control = FPCVersionLabel
         AnchorSideRight.Control = BasicSheet
         AnchorSideRight.Side = asrBottom
-        Left = 163
-        Height = 18
-        Top = 54
-        Width = 109
+        Left = 584
+        Height = 27
+        Top = 81
+        Width = 168
         Caption = 'Lazarus version'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -24
         Font.Name = 'Arial'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -1025,21 +248,21 @@ object Form1: TForm1
         AnchorSideRight.Control = BasicSheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = BitBtnLazarusOnly
-        Left = 163
-        Height = 257
-        Top = 80
-        Width = 131
+        Left = 584
+        Height = 473
+        Top = 120
+        Width = 196
         Anchors = [akTop, akRight, akBottom]
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
-        Constraints.MinWidth = 80
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
+        Constraints.MinWidth = 120
         ExtendedSelect = False
         ItemHeight = 0
         ParentFont = False
         ScrollWidth = 133
         Style = lbOwnerDrawFixed
-        TabOrder = 4
+        TabOrder = 3
         OnDrawItem = ListBoxTargetDrawItem
         OnSelectionChange = TargetSelectionChange
       end
@@ -1048,16 +271,15 @@ object Form1: TForm1
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = ListBoxFPCTarget
         AnchorSideRight.Side = asrBottom
-        AnchorSideBottom.Control = BitBtnFPCandLazarus
-        Left = 8
-        Height = 61
+        Left = 12
+        Height = 87
         Hint = 'Only install/update selected FPC version.'
-        Top = 345
-        Width = 131
+        Top = 605
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Top = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Top = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Only FPC'
         Layout = blGlyphTop
         Margin = 5
@@ -1074,16 +296,15 @@ object Form1: TForm1
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = ListBoxLazarusTarget
         AnchorSideRight.Side = asrBottom
-        AnchorSideBottom.Control = BitBtnFPCandLazarus
-        Left = 163
-        Height = 61
+        Left = 584
+        Height = 87
         Hint = 'Only install/update selected Lazarus version.'
-        Top = 345
-        Width = 131
+        Top = 605
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Top = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Top = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Only Lazarus'
         Layout = blGlyphTop
         Margin = 5
@@ -1095,82 +316,23 @@ object Form1: TForm1
         TabOrder = 1
         OnClick = InstallClick
       end
-      object BitBtnFPCandLazarus: TBitBtn
-        AnchorSideLeft.Control = BasicSheet
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = BasicSheet
-        AnchorSideRight.Side = asrBottom
-        AnchorSideBottom.Control = btnSetupPlus
-        Left = 8
-        Height = 61
-        Hint = 'Will install/update the selected version of both FPC and Lazarus.'
-        Top = 414
-        Width = 286
-        Anchors = [akLeft, akRight, akBottom]
-        AutoSize = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 6
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
-        Caption = 'Install/update FPC+Lazarus'
-        Constraints.MinHeight = 60
-        Layout = blGlyphTop
-        Margin = 5
-        Images = ImageList_88x32
-        ImageIndex = 0
-        ParentFont = False
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 2
-        OnClick = InstallClick
-      end
       object chkGitlab: TCheckBox
         AnchorSideLeft.Control = BasicSheet
         AnchorSideTop.Control = BasicSheet
         AnchorSideRight.Control = BasicSheet
         AnchorSideRight.Side = asrBottom
-        Left = 220
-        Height = 19
-        Top = 14
-        Width = 52
-        BorderSpacing.Left = 220
-        BorderSpacing.Top = 14
-        BorderSpacing.Right = 4
+        Left = 330
+        Height = 29
+        Top = 21
+        Width = 75
+        BorderSpacing.Left = 330
+        BorderSpacing.Top = 21
+        BorderSpacing.Right = 6
         Caption = 'GitLab'
         Checked = True
         State = cbChecked
-        TabOrder = 5
+        TabOrder = 4
         OnChange = chkGitlabChange
-      end
-      object imgSVN: TImage
-        AnchorSideLeft.Control = BasicSheet
-        AnchorSideTop.Control = BasicSheet
-        AnchorSideRight.Control = chkGitlab
-        Left = 8
-        Height = 40
-        Top = 4
-        Width = 200
-        AutoSize = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 12
-        ImageIndex = 1
-        Images = ImageList_200x40
-      end
-      object imgGitlab: TImage
-        AnchorSideLeft.Control = BasicSheet
-        AnchorSideTop.Control = BasicSheet
-        AnchorSideRight.Control = chkGitlab
-        Left = 8
-        Height = 40
-        Top = 4
-        Width = 200
-        AutoSize = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 12
-        Images = ImageList_200x40
-        Visible = False
       end
       object btnSetupPlus: TButton
         AnchorSideLeft.Control = BasicSheet
@@ -1180,42 +342,42 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = BasicSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 8
-        Height = 31
+        Left = 12
+        Height = 46
         Hint = 'Open the extended settings form.'
-        Top = 483
-        Width = 286
+        Top = 806
+        Width = 768
         Anchors = [akLeft, akRight, akBottom]
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 4
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 6
         Caption = 'Setup+'
         ParentFont = False
         ParentShowHint = False
         ShowHint = True
-        TabOrder = 6
+        TabOrder = 5
         OnClick = btnSetupPlusClick
       end
     end
     object CrossSheet: TTabSheet
       Caption = 'Cross'
-      ClientHeight = 518
-      ClientWidth = 302
+      ClientHeight = 858
+      ClientWidth = 792
       ParentFont = False
       object radgrpCPU: TRadioGroup
         AnchorSideLeft.Control = CrossSheet
         AnchorSideTop.Control = CrossSheet
         AnchorSideBottom.Control = ButtonInstallCrossCompiler
-        Left = 8
-        Height = 404
-        Top = 4
-        Width = 128
+        Left = 12
+        Height = 697
+        Top = 6
+        Width = 192
         Anchors = [akTop, akLeft, akBottom]
         AutoFill = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 4
-        BorderSpacing.Bottom = 2
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 6
+        BorderSpacing.Bottom = 3
         Caption = 'CPU'
         ChildSizing.LeftRightSpacing = 6
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1224,9 +386,9 @@ object Form1: TForm1
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 384
-        ClientWidth = 124
-        Constraints.MaxWidth = 150
+        ClientHeight = 667
+        ClientWidth = 188
+        Constraints.MaxWidth = 225
         Items.Strings = (
           'i386'
           'x86_64'
@@ -1261,16 +423,16 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = CrossSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 152
-        Height = 512
-        Top = 4
-        Width = 140
+        Left = 567
+        Height = 849
+        Top = 6
+        Width = 210
         Anchors = [akTop, akRight, akBottom]
         AutoFill = True
-        BorderSpacing.Left = 10
-        BorderSpacing.Top = 4
-        BorderSpacing.Right = 10
-        BorderSpacing.Bottom = 2
+        BorderSpacing.Left = 15
+        BorderSpacing.Top = 6
+        BorderSpacing.Right = 15
+        BorderSpacing.Bottom = 3
         Caption = 'OS'
         ChildSizing.LeftRightSpacing = 6
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
@@ -1279,9 +441,9 @@ object Form1: TForm1
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 492
-        ClientWidth = 136
-        Constraints.MaxWidth = 150
+        ClientHeight = 819
+        ClientWidth = 206
+        Constraints.MaxWidth = 225
         Items.Strings = (
           'windows'
           'linux'
@@ -1322,15 +484,15 @@ object Form1: TForm1
         AnchorSideRight.Control = radgrpCPU
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = ButtonRemoveCrossCompiler
-        Left = 8
-        Height = 25
+        Left = 12
+        Height = 35
         Hint = 'Install the selected CPU-OS cross-compiler.'
-        Top = 410
-        Width = 128
+        Top = 706
+        Width = 192
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Top = 2
-        BorderSpacing.Bottom = 2
+        BorderSpacing.Top = 3
+        BorderSpacing.Bottom = 3
         Caption = 'Install compiler'
         ParentFont = False
         ParentShowHint = False
@@ -1346,15 +508,15 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = CrossSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 8
-        Height = 25
+        Left = 12
+        Height = 35
         Hint = 'Select a subarch for embedded target.'
-        Top = 491
-        Width = 128
+        Top = 820
+        Width = 192
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Top = 2
-        BorderSpacing.Bottom = 2
+        BorderSpacing.Top = 3
+        BorderSpacing.Bottom = 3
         Caption = 'Set subarch'
         Enabled = False
         ParentFont = False
@@ -1370,15 +532,15 @@ object Form1: TForm1
         AnchorSideRight.Control = radgrpCPU
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = ButtonAutoCrossUpdate
-        Left = 8
-        Height = 25
+        Left = 12
+        Height = 35
         Hint = 'Remove the selected CPU-OS cross-compiler.'
-        Top = 437
-        Width = 128
+        Top = 744
+        Width = 192
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Top = 2
-        BorderSpacing.Bottom = 2
+        BorderSpacing.Top = 3
+        BorderSpacing.Bottom = 3
         Caption = 'Remove compiler'
         ParentFont = False
         ParentShowHint = False
@@ -1393,15 +555,15 @@ object Form1: TForm1
         AnchorSideRight.Control = radgrpCPU
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = ButtonSubarchSelect
-        Left = 8
-        Height = 25
+        Left = 12
+        Height = 35
         Hint = 'Auto-update all installed cross-compilers.'
-        Top = 464
-        Width = 128
+        Top = 782
+        Width = 192
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Top = 2
-        BorderSpacing.Bottom = 2
+        BorderSpacing.Top = 3
+        BorderSpacing.Bottom = 3
         Caption = 'Update all'
         ParentFont = False
         ParentShowHint = False
@@ -1412,8 +574,8 @@ object Form1: TForm1
     end
     object ModuleSheet: TTabSheet
       Caption = 'Modules'
-      ClientHeight = 518
-      ClientWidth = 302
+      ClientHeight = 858
+      ClientWidth = 792
       ParentFont = False
       object listModules: TListBox
         AnchorSideLeft.Control = ModuleSheet
@@ -1421,15 +583,15 @@ object Form1: TForm1
         AnchorSideRight.Control = ModuleSheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = Memo1
-        Left = 8
-        Height = 373
-        Top = 8
-        Width = 286
+        Left = 12
+        Height = 653
+        Top = 12
+        Width = 768
         Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 12
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 18
         ItemHeight = 0
         ParentShowHint = False
         ParentFont = False
@@ -1443,15 +605,15 @@ object Form1: TForm1
         AnchorSideLeft.Control = ModuleSheet
         AnchorSideBottom.Control = ModuleSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 8
-        Height = 25
+        Left = 12
+        Height = 35
         Hint = 'Install the selected module.'
-        Top = 485
-        Width = 101
+        Top = 811
+        Width = 138
         Anchors = [akLeft, akBottom]
         AutoSize = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Install module'
         ParentFont = False
         ParentShowHint = False
@@ -1464,15 +626,15 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = ModuleSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 178
-        Height = 25
+        Left = 621
+        Height = 35
         Hint = 'Uninstall the selected module.'
-        Top = 485
-        Width = 116
+        Top = 811
+        Width = 159
         Anchors = [akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Uninstall module'
         ParentFont = False
         ParentShowHint = False
@@ -1485,14 +647,14 @@ object Form1: TForm1
         AnchorSideTop.Control = OPMBtn
         AnchorSideRight.Control = OPMBtn
         AnchorSideBottom.Control = btnInstallModule
-        Left = 8
-        Height = 80
-        Top = 393
-        Width = 189
+        Left = 12
+        Height = 110
+        Top = 683
+        Width = 638
         Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Left = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 12
+        BorderSpacing.Left = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 18
         Lines.Strings = (
           ''
         )
@@ -1503,14 +665,14 @@ object Form1: TForm1
         AnchorSideRight.Control = ModuleSheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = DockBtn
-        Left = 205
-        Height = 42
+        Left = 662
+        Height = 58
         Hint = 'Will install/update the Online Package Manager'
-        Top = 393
-        Width = 89
+        Top = 683
+        Width = 118
         Anchors = [akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Right = 8
+        BorderSpacing.Right = 12
         Caption = 'OPM'
         Images = ImageList_32x32
         ImageIndex = 9
@@ -1526,15 +688,15 @@ object Form1: TForm1
         AnchorSideRight.Control = ModuleSheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = btnInstallModule
-        Left = 205
-        Height = 42
+        Left = 661
+        Height = 58
         Hint = 'Will change Lazarus into a single form docked editor.'
-        Top = 435
-        Width = 89
+        Top = 741
+        Width = 119
         Anchors = [akRight, akBottom]
         AutoSize = True
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Dock'
         Images = ImageList_32x32
         ImageIndex = 8
@@ -1546,8 +708,8 @@ object Form1: TForm1
     end
     object TagSheet: TTabSheet
       Caption = 'Tags'
-      ClientHeight = 518
-      ClientWidth = 302
+      ClientHeight = 858
+      ClientWidth = 792
       ParentFont = False
       object FPCTagLabel: TLabel
         AnchorSideLeft.Control = ListBoxFPCTargetTag
@@ -1555,14 +717,14 @@ object Form1: TForm1
         AnchorSideRight.Control = BasicSheet
         AnchorSideRight.Side = asrCenter
         AnchorSideBottom.Control = ListBoxFPCTargetTag
-        Left = 8
-        Height = 18
-        Top = 8
-        Width = 87
-        BorderSpacing.Top = 8
+        Left = 12
+        Height = 27
+        Top = 12
+        Width = 131
+        BorderSpacing.Top = 12
         Caption = 'FPC version'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -24
         Font.Name = 'Arial'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -1574,14 +736,14 @@ object Form1: TForm1
         AnchorSideTop.Control = TagSheet
         AnchorSideRight.Control = BasicSheet
         AnchorSideRight.Side = asrBottom
-        Left = 163
-        Height = 18
-        Top = 8
-        Width = 109
-        BorderSpacing.Top = 8
+        Left = 584
+        Height = 27
+        Top = 12
+        Width = 168
+        BorderSpacing.Top = 12
         Caption = 'Lazarus version'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -24
         Font.Name = 'Arial'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -1593,19 +755,19 @@ object Form1: TForm1
         AnchorSideTop.Control = FPCTagLabel
         AnchorSideTop.Side = asrBottom
         AnchorSideBottom.Control = btnGetFPCReleases
-        Left = 8
-        Height = 237
-        Top = 34
-        Width = 131
+        Left = 12
+        Height = 444
+        Top = 51
+        Width = 196
         Anchors = [akTop, akLeft, akBottom]
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Bottom = 12
         Items.Strings = (
           'Use button'
           'to get list'
         )
-        ItemHeight = 15
+        ItemHeight = 25
         ParentFont = False
         ScrollWidth = 133
         TabOrder = 0
@@ -1618,19 +780,19 @@ object Form1: TForm1
         AnchorSideRight.Control = TagSheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = btnGetLazarusReleases
-        Left = 163
-        Height = 237
-        Top = 34
-        Width = 131
+        Left = 584
+        Height = 444
+        Top = 51
+        Width = 196
         Anchors = [akTop, akRight, akBottom]
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
         Items.Strings = (
           'Use button'
           'to get list'
         )
-        ItemHeight = 15
+        ItemHeight = 25
         ParentFont = False
         ScrollWidth = 133
         TabOrder = 1
@@ -1643,14 +805,14 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxFPCTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = MemoAddTag
-        Left = 8
-        Height = 70
+        Left = 12
+        Height = 105
         Hint = 'Add tag/url into FPC install list'
-        Top = 362
-        Width = 131
+        Top = 624
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
-        BorderSpacing.Top = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Top = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Add Tag'
         Layout = blGlyphTop
         Images = ImageList_32x32
@@ -1668,14 +830,14 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxLazarusTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = MemoAddTag
-        Left = 163
-        Height = 70
+        Left = 584
+        Height = 105
         Hint = 'Add tag/url into Lazarus install list'
-        Top = 362
-        Width = 131
+        Top = 624
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
-        BorderSpacing.Top = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Top = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Add Tag'
         Layout = blGlyphTop
         Images = ImageList_32x32
@@ -1692,14 +854,14 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = TagSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 8
-        Height = 70
-        Top = 440
-        Width = 286
+        Left = 12
+        Height = 105
+        Top = 741
+        Width = 768
         Anchors = [akLeft, akRight, akBottom]
-        BorderSpacing.Left = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
         ParentFont = False
         ReadOnly = True
         TabOrder = 4
@@ -1709,10 +871,10 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxFPCTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = btnGetFPCFixes
-        Left = 8
-        Height = 25
-        Top = 279
-        Width = 131
+        Left = 12
+        Height = 35
+        Top = 507
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
         Caption = 'Get releases'
@@ -1724,10 +886,10 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxFPCTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = BitBtnFPCOnlyTag
-        Left = 8
-        Height = 25
-        Top = 329
-        Width = 131
+        Left = 12
+        Height = 35
+        Top = 577
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
         Caption = 'Get candidates'
@@ -1739,10 +901,10 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxLazarusTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = btnGetLazarusFixes
-        Left = 163
-        Height = 25
-        Top = 279
-        Width = 131
+        Left = 584
+        Height = 35
+        Top = 507
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
         Caption = 'Get releases'
@@ -1754,10 +916,10 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxLazarusTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = BitBtnLazarusOnlyTag
-        Left = 163
-        Height = 25
-        Top = 329
-        Width = 131
+        Left = 584
+        Height = 35
+        Top = 577
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
         Caption = 'Get candidates'
@@ -1769,10 +931,10 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxFPCTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = btnGetFPCCandidates
-        Left = 8
-        Height = 25
-        Top = 304
-        Width = 131
+        Left = 12
+        Height = 35
+        Top = 542
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
         Caption = 'Get fixes'
@@ -1784,10 +946,10 @@ object Form1: TForm1
         AnchorSideRight.Control = ListBoxLazarusTargetTag
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = btnGetLazarusCandidates
-        Left = 163
-        Height = 25
-        Top = 304
-        Width = 131
+        Left = 584
+        Height = 35
+        Top = 542
+        Width = 196
         Anchors = [akLeft, akRight, akBottom]
         AutoSize = True
         Caption = 'Get fixes'
@@ -1797,22 +959,22 @@ object Form1: TForm1
     end
     object HistorySheet: TTabSheet
       Caption = 'History'
-      ClientHeight = 518
-      ClientWidth = 302
+      ClientHeight = 858
+      ClientWidth = 792
       object FPCHistoryLabel: TLabel
         AnchorSideLeft.Control = HistorySheet
         AnchorSideTop.Control = HistorySheet
         AnchorSideRight.Control = HistorySheet
         AnchorSideRight.Side = asrCenter
-        Left = 8
-        Height = 18
-        Top = 8
-        Width = 140
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
+        Left = 12
+        Height = 27
+        Top = 12
+        Width = 214
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
         Caption = 'FPC revision history'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -24
         Font.Name = 'Arial'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -1825,15 +987,15 @@ object Form1: TForm1
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = HistorySheet
         AnchorSideRight.Side = asrBottom
-        Left = 8
-        Height = 18
-        Top = 221
-        Width = 162
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 16
+        Left = 12
+        Height = 27
+        Top = 327
+        Width = 251
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 24
         Caption = 'Lazarus revision history'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -24
         Font.Name = 'Arial'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -1847,17 +1009,17 @@ object Form1: TForm1
         AnchorSideRight.Control = HistorySheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = MemoHistory
-        Left = 8
-        Height = 61
+        Left = 12
+        Height = 87
         Hint = 'Set FPC revision'
-        Top = 144
-        Width = 286
+        Top = 216
+        Width = 768
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Set FPC hash in Setup+'
         Enabled = False
         Layout = blGlyphTop
@@ -1875,17 +1037,17 @@ object Form1: TForm1
         AnchorSideRight.Control = HistorySheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = MemoHistory
-        Left = 8
-        Height = 61
+        Left = 12
+        Height = 87
         Hint = 'Set Lazarus revision'
-        Top = 357
-        Width = 286
+        Top = 536
+        Width = 768
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
         Caption = 'Set Lazarus hash in Setup+'
         Enabled = False
         Layout = blGlyphTop
@@ -1905,15 +1067,15 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = HistorySheet
         AnchorSideBottom.Side = asrBottom
-        Left = 8
-        Height = 68
-        Top = 442
-        Width = 286
+        Left = 12
+        Height = 187
+        Top = 659
+        Width = 768
         Anchors = [akTop, akLeft, akRight, akBottom]
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 24
-        BorderSpacing.Right = 8
-        BorderSpacing.Bottom = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 36
+        BorderSpacing.Right = 12
+        BorderSpacing.Bottom = 12
         ParentFont = False
         ReadOnly = True
         TabOrder = 2
@@ -1924,29 +1086,30 @@ object Form1: TForm1
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = HistorySheet
         AnchorSideRight.Side = asrBottom
-        Left = 8
-        Height = 102
-        Top = 34
-        Width = 286
+        Left = 12
+        Height = 153
+        Top = 51
+        Width = 768
         Anchors = [akTop, akLeft, akRight]
         AutoWidthLastColumn = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderStyle = bsNone
         Columns = <        
           item
             Caption = 'Hash'
-            MinWidth = 80
-            Width = 80
+            MinWidth = 120
+            Width = 120
           end        
           item
             Caption = 'Rev-name'
-            MinWidth = 100
-            Width = 100
+            MinWidth = 150
+            Width = 150
           end        
           item
             Caption = 'Date'
-            Width = 102
+            Width = 498
           end>
         ColumnClick = False
         HideSelection = False
@@ -1961,29 +1124,30 @@ object Form1: TForm1
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = HistorySheet
         AnchorSideRight.Side = asrBottom
-        Left = 8
-        Height = 102
-        Top = 247
-        Width = 286
+        Left = 12
+        Height = 153
+        Top = 366
+        Width = 768
         Anchors = [akTop, akLeft, akRight]
         AutoWidthLastColumn = True
-        BorderSpacing.Left = 8
-        BorderSpacing.Top = 8
-        BorderSpacing.Right = 8
+        BorderSpacing.Left = 12
+        BorderSpacing.Top = 12
+        BorderSpacing.Right = 12
+        BorderStyle = bsNone
         Columns = <        
           item
             Caption = 'Hash'
-            MinWidth = 80
-            Width = 80
+            MinWidth = 120
+            Width = 120
           end        
           item
             Caption = 'Rev-name'
-            MinWidth = 100
-            Width = 100
+            MinWidth = 150
+            Width = 150
           end        
           item
             Caption = 'Date'
-            Width = 102
+            Width = 498
           end>
         ColumnClick = False
         HideSelection = False
@@ -1996,33 +1160,29 @@ object Form1: TForm1
     object ExtraSheet: TTabSheet
       AnchorSideLeft.Control = PageControl1
       Hint = 'If cross-compiler present, build the native compiler for selected system in cross.'
-      Caption = 'Extras'
-      ClientHeight = 518
-      ClientWidth = 302
+      Caption = 'Tasks'
+      ClientHeight = 858
+      ClientWidth = 792
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
       object grpCustomTasks: TGroupBox
-        AnchorSideLeft.Control = ExtraSheet
-        AnchorSideLeft.Side = asrCenter
-        AnchorSideTop.Control = ExtraSheet
-        Left = 60
-        Height = 245
+        Left = 0
+        Height = 345
         Top = 0
-        Width = 183
-        AutoSize = True
+        Width = 792
+        Align = alTop
         Caption = 'Custom Tasks'
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 225
-        ClientWidth = 179
+        ClientHeight = 315
+        ClientWidth = 788
         TabOrder = 0
         object ChkMakefileFPC: TButton
           Left = 0
-          Height = 25
+          Height = 35
           Top = 0
-          Width = 179
-          AutoSize = True
+          Width = 253
           Caption = 'Check Makefile FPC'
           ParentFont = False
           TabOrder = 0
@@ -2030,10 +1190,9 @@ object Form1: TForm1
         end
         object ChkMakefileLaz: TButton
           Left = 0
-          Height = 25
-          Top = 25
-          Width = 179
-          AutoSize = True
+          Height = 35
+          Top = 35
+          Width = 253
           Caption = 'Check Makefile Lazarus'
           ParentFont = False
           TabOrder = 1
@@ -2041,10 +1200,9 @@ object Form1: TForm1
         end
         object CreateStartup: TButton
           Left = 0
-          Height = 25
-          Top = 50
-          Width = 179
-          AutoSize = True
+          Height = 35
+          Top = 70
+          Width = 253
           Caption = 'Re-create startup scripts'
           ParentFont = False
           TabOrder = 2
@@ -2052,10 +1210,9 @@ object Form1: TForm1
         end
         object btnGetOpenSSL: TButton
           Left = 0
-          Height = 25
-          Top = 75
-          Width = 179
-          AutoSize = True
+          Height = 35
+          Top = 105
+          Width = 253
           Caption = 'Get OpenSSL by Browser'
           ParentFont = False
           TabOrder = 3
@@ -2063,10 +1220,9 @@ object Form1: TForm1
         end
         object btnUpdateLazarusMakefiles: TButton
           Left = 0
-          Height = 25
-          Top = 100
-          Width = 179
-          AutoSize = True
+          Height = 35
+          Top = 140
+          Width = 253
           Caption = 'Update Lazarus Makefiles'
           ParentFont = False
           TabOrder = 4
@@ -2075,41 +1231,37 @@ object Form1: TForm1
         end
         object btnCreateLazarusConfig: TButton
           Left = 0
-          Height = 25
-          Top = 125
-          Width = 179
-          AutoSize = True
+          Height = 35
+          Top = 175
+          Width = 253
           Caption = 'Create Lazarus Configuration'
           TabOrder = 5
           OnClick = btnCreateLazarusConfigClick
         end
         object btnCheckToolsLocations: TButton
           Left = 0
-          Height = 25
-          Top = 150
-          Width = 179
-          AutoSize = True
+          Height = 35
+          Top = 210
+          Width = 253
           Caption = 'Check Tools Location'
           TabOrder = 6
           OnClick = btnCheckToolsLocationsClick
         end
         object btnBuildHelp: TButton
           Left = 0
-          Height = 25
-          Top = 175
-          Width = 179
-          AutoSize = True
+          Height = 35
+          Top = 245
+          Width = 253
           Caption = 'Build Help'
           TabOrder = 7
           OnClick = btnBuildHelpClick
         end
         object ButtonBuildNativeCompiler: TButton
           Left = 0
-          Height = 25
+          Height = 35
           Hint = 'Build the selected CPU-OS native compiler.'
-          Top = 200
-          Width = 179
-          AutoSize = True
+          Top = 280
+          Width = 253
           Caption = 'Build native compiler'
           ParentFont = False
           ParentShowHint = False
@@ -2118,34 +1270,800 @@ object Form1: TForm1
           OnClick = btnBuildNativeCompilerClick
         end
       end
+      object CheckAutoClear: TCheckBox
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = btnSendLog
+        Left = 240
+        Height = 29
+        Top = 418
+        Width = 105
+        Anchors = [akTop, akRight]
+        BorderSpacing.Right = 18
+        Caption = 'Auto clear'
+        Checked = True
+        ParentFont = False
+        State = cbChecked
+        TabOrder = 1
+      end
+      object btnSendLog: TButton
+        AnchorSideRight.Control = btnClearLog
+        Left = 232
+        Height = 35
+        Hint = 'Send email to fpcup maintainer containing Commandscreen output.'
+        Top = 536
+        Width = 99
+        Anchors = [akTop, akRight]
+        AutoSize = True
+        BorderSpacing.Right = 18
+        Caption = 'Email log'
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        OnClick = btnLogClick
+      end
+      object btnClearLog: TButton
+        AnchorSideRight.Control = Owner
+        AnchorSideRight.Side = asrBottom
+        Left = 232
+        Height = 35
+        Top = 480
+        Width = 96
+        Anchors = [akTop, akRight]
+        AutoSize = True
+        BorderSpacing.Right = 18
+        Caption = 'Clear log'
+        ParentFont = False
+        TabOrder = 3
+        OnClick = btnLogClick
+      end
+      object StatusMessage: TEdit
+        AnchorSideTop.Side = asrBottom
+        Left = 0
+        Height = 33
+        Top = 656
+        Width = 790
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Top = 9
+        BorderSpacing.Right = 18
+        Constraints.MinWidth = 180
+        HideSelection = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 4
+        Text = 'Sitting and waiting'
+      end
     end
-  end
-  object btnSendLog: TButton
-    AnchorSideTop.Control = StatusMessage
-    AnchorSideRight.Control = btnClearLog
-    Left = 1018
-    Height = 25
-    Hint = 'Send email to fpcup maintainer containing Commandscreen output.'
-    Top = 33
-    Width = 75
-    Anchors = [akTop, akRight]
-    AutoSize = True
-    BorderSpacing.Right = 12
-    Caption = 'Email log'
-    ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
-    TabOrder = 11
-    OnClick = btnLogClick
+    object TabSheet2: TTabSheet
+      Caption = 'Extras'
+      ClientHeight = 858
+      ClientWidth = 792
+      object Panel1: TPanel
+        AnchorSideLeft.Control = Owner
+        AnchorSideRight.Control = Owner
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = Owner
+        AnchorSideBottom.Side = asrBottom
+        Left = 9
+        Height = 75
+        Top = 777
+        Width = 765
+        Align = alBottom
+        AutoSize = True
+        BorderSpacing.Left = 9
+        BorderSpacing.Right = 18
+        BorderSpacing.Bottom = 6
+        BorderSpacing.CellAlignHorizontal = ccaCenter
+        BorderSpacing.CellAlignVertical = ccaCenter
+        BevelInner = bvLowered
+        Constraints.MinHeight = 75
+        ParentFont = False
+        TabOrder = 0
+      end
+      object TrunkBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Will install/update trunk version of both FPC and Lazarus.'
+        Top = 277
+        Width = 774
+        Align = alTop
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'Trunk'
+        Images = ImageList_32x32
+        ImageIndex = 4
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 1
+        OnClick = QuickBtnClick
+      end
+      object FixesBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Will install/update current fixes versions of both FPC and Lazarus'
+        Top = 143
+        Width = 774
+        Align = alTop
+        AutoSize = True
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'Fixes'
+        Images = ImageList_32x32
+        ImageIndex = 0
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        OnClick = QuickBtnClick
+      end
+      object UltiboBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Install baremetal Ultibo for RPi2/3/4/5'
+        Top = 9
+        Width = 774
+        Align = alTop
+        AutoSize = True
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Images = ImageList_88x32
+        ImageIndex = 1
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 3
+        OnClick = QuickBtnClick
+      end
+      object mORMotBtn: TBitBtn
+        Left = 6
+        Height = 58
+        Hint = 'Get the mORMot2 for FPC'
+        Top = 76
+        Width = 780
+        Align = alTop
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'mORMot2'
+        Images = ImageList_32x32
+        ImageIndex = 11
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 4
+        OnClick = btnInstallModuleClick
+      end
+      object ESPBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Get FPC for ESP32 [lx6] boards'
+        Top = 210
+        Width = 774
+        Align = alTop
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'ESP32'
+        Images = ImageList_32x32
+        ImageIndex = 10
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 5
+        OnClick = QuickBtnClick
+      end
+      object PicoBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Get FPC for armv6m RPi Pico'
+        Top = 344
+        Width = 774
+        Align = alTop
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'Pico'
+        Images = ImageList_32x32
+        ImageIndex = 12
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 6
+        OnClick = QuickBtnClick
+      end
+      object WioBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Get FPC for SAMD51 embedded on Wio Terminal'
+        Top = 411
+        Width = 774
+        Align = alTop
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'Wio'
+        Images = ImageList_32x32
+        ImageIndex = 14
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 7
+        Visible = False
+        OnClick = QuickBtnClick
+      end
+      object WABtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Install FPC and Lazarus for Web Assembly'
+        Top = 478
+        Width = 774
+        Align = alTop
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'WA'
+        Images = ImageList_32x32
+        ImageIndex = 7
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 8
+        OnClick = QuickBtnClick
+      end
+      object AndroidBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Will install/update FPC and Lazarus stable and LAMW'
+        Top = 545
+        Width = 774
+        Align = alTop
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'LAMW'
+        Images = ImageList_32x32
+        ImageIndex = 6
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 9
+        OnClick = QuickBtnClick
+      end
+      object StableBtn: TBitBtn
+        Left = 12
+        Height = 58
+        Hint = 'Will install/update stable versions of both FPC and Lazarus'
+        Top = 612
+        Width = 774
+        Align = alTop
+        AutoSize = True
+        BorderSpacing.Left = 6
+        BorderSpacing.Top = 3
+        BorderSpacing.Around = 6
+        Caption = 'Stable'
+        Images = ImageList_32x32
+        ImageIndex = 3
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 10
+        OnClick = QuickBtnClick
+      end
+    end
+    object TabSheet1: TTabSheet
+      Caption = 'Log'
+      ClientHeight = 858
+      ClientWidth = 792
+      inline CommandOutputScreen: TSynEdit
+        Left = 0
+        Height = 837
+        Top = 9
+        Width = 774
+        Align = alClient
+        BorderSpacing.Top = 9
+        BorderSpacing.Right = 18
+        BorderSpacing.Bottom = 12
+        Constraints.MinHeight = 120
+        Constraints.MinWidth = 180
+        Color = clBlack
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clLime
+        Font.Height = -20
+        Font.Name = 'Monospace'
+        Font.Pitch = fpFixed
+        Font.Quality = fqCleartype
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        TabOrder = 0
+        OnMouseWheel = CommandOutputScreenMouseWheel
+        Gutter.AutoSize = False
+        Gutter.Visible = False
+        Gutter.Width = 55
+        Gutter.MouseActions = <>
+        RightGutter.AutoSize = False
+        RightGutter.Visible = False
+        RightGutter.Width = 0
+        RightGutter.MouseActions = <>
+        HideSelection = True
+        InsertCaret = ctBlock
+        InsertMode = False
+        Keystrokes = <        
+          item
+            Command = ecUp
+            ShortCut = 38
+          end        
+          item
+            Command = ecSelUp
+            ShortCut = 8230
+          end        
+          item
+            Command = ecScrollUp
+            ShortCut = 16422
+          end        
+          item
+            Command = ecDown
+            ShortCut = 40
+          end        
+          item
+            Command = ecSelDown
+            ShortCut = 8232
+          end        
+          item
+            Command = ecScrollDown
+            ShortCut = 16424
+          end        
+          item
+            Command = ecLeft
+            ShortCut = 37
+          end        
+          item
+            Command = ecSelLeft
+            ShortCut = 8229
+          end        
+          item
+            Command = ecWordLeft
+            ShortCut = 16421
+          end        
+          item
+            Command = ecSelWordLeft
+            ShortCut = 24613
+          end        
+          item
+            Command = ecRight
+            ShortCut = 39
+          end        
+          item
+            Command = ecSelRight
+            ShortCut = 8231
+          end        
+          item
+            Command = ecWordRight
+            ShortCut = 16423
+          end        
+          item
+            Command = ecSelWordRight
+            ShortCut = 24615
+          end        
+          item
+            Command = ecPageDown
+            ShortCut = 34
+          end        
+          item
+            Command = ecSelPageDown
+            ShortCut = 8226
+          end        
+          item
+            Command = ecPageBottom
+            ShortCut = 16418
+          end        
+          item
+            Command = ecSelPageBottom
+            ShortCut = 24610
+          end        
+          item
+            Command = ecPageUp
+            ShortCut = 33
+          end        
+          item
+            Command = ecSelPageUp
+            ShortCut = 8225
+          end        
+          item
+            Command = ecPageTop
+            ShortCut = 16417
+          end        
+          item
+            Command = ecSelPageTop
+            ShortCut = 24609
+          end        
+          item
+            Command = ecLineStart
+            ShortCut = 36
+          end        
+          item
+            Command = ecSelLineStart
+            ShortCut = 8228
+          end        
+          item
+            Command = ecEditorTop
+            ShortCut = 16420
+          end        
+          item
+            Command = ecSelEditorTop
+            ShortCut = 24612
+          end        
+          item
+            Command = ecLineEnd
+            ShortCut = 35
+          end        
+          item
+            Command = ecSelLineEnd
+            ShortCut = 8227
+          end        
+          item
+            Command = ecEditorBottom
+            ShortCut = 16419
+          end        
+          item
+            Command = ecSelEditorBottom
+            ShortCut = 24611
+          end        
+          item
+            Command = ecToggleMode
+            ShortCut = 45
+          end        
+          item
+            Command = ecCopy
+            ShortCut = 16429
+          end        
+          item
+            Command = ecPaste
+            ShortCut = 8237
+          end        
+          item
+            Command = ecDeleteChar
+            ShortCut = 46
+          end        
+          item
+            Command = ecCut
+            ShortCut = 8238
+          end        
+          item
+            Command = ecDeleteLastChar
+            ShortCut = 8
+          end        
+          item
+            Command = ecDeleteLastChar
+            ShortCut = 8200
+          end        
+          item
+            Command = ecDeleteLastWord
+            ShortCut = 16392
+          end        
+          item
+            Command = ecUndo
+            ShortCut = 32776
+          end        
+          item
+            Command = ecRedo
+            ShortCut = 40968
+          end        
+          item
+            Command = ecLineBreak
+            ShortCut = 13
+          end        
+          item
+            Command = ecSelectAll
+            ShortCut = 16449
+          end        
+          item
+            Command = ecCopy
+            ShortCut = 16451
+          end        
+          item
+            Command = ecBlockIndent
+            ShortCut = 24649
+          end        
+          item
+            Command = ecLineBreak
+            ShortCut = 16461
+          end        
+          item
+            Command = ecInsertLine
+            ShortCut = 16462
+          end        
+          item
+            Command = ecDeleteWord
+            ShortCut = 16468
+          end        
+          item
+            Command = ecBlockUnindent
+            ShortCut = 24661
+          end        
+          item
+            Command = ecPaste
+            ShortCut = 16470
+          end        
+          item
+            Command = ecCut
+            ShortCut = 16472
+          end        
+          item
+            Command = ecDeleteLine
+            ShortCut = 16473
+          end        
+          item
+            Command = ecDeleteEOL
+            ShortCut = 24665
+          end        
+          item
+            Command = ecUndo
+            ShortCut = 16474
+          end        
+          item
+            Command = ecRedo
+            ShortCut = 24666
+          end        
+          item
+            Command = ecGotoMarker0
+            ShortCut = 16432
+          end        
+          item
+            Command = ecGotoMarker1
+            ShortCut = 16433
+          end        
+          item
+            Command = ecGotoMarker2
+            ShortCut = 16434
+          end        
+          item
+            Command = ecGotoMarker3
+            ShortCut = 16435
+          end        
+          item
+            Command = ecGotoMarker4
+            ShortCut = 16436
+          end        
+          item
+            Command = ecGotoMarker5
+            ShortCut = 16437
+          end        
+          item
+            Command = ecGotoMarker6
+            ShortCut = 16438
+          end        
+          item
+            Command = ecGotoMarker7
+            ShortCut = 16439
+          end        
+          item
+            Command = ecGotoMarker8
+            ShortCut = 16440
+          end        
+          item
+            Command = ecGotoMarker9
+            ShortCut = 16441
+          end        
+          item
+            Command = ecSetMarker0
+            ShortCut = 24624
+          end        
+          item
+            Command = ecSetMarker1
+            ShortCut = 24625
+          end        
+          item
+            Command = ecSetMarker2
+            ShortCut = 24626
+          end        
+          item
+            Command = ecSetMarker3
+            ShortCut = 24627
+          end        
+          item
+            Command = ecSetMarker4
+            ShortCut = 24628
+          end        
+          item
+            Command = ecSetMarker5
+            ShortCut = 24629
+          end        
+          item
+            Command = ecSetMarker6
+            ShortCut = 24630
+          end        
+          item
+            Command = ecSetMarker7
+            ShortCut = 24631
+          end        
+          item
+            Command = ecSetMarker8
+            ShortCut = 24632
+          end        
+          item
+            Command = ecSetMarker9
+            ShortCut = 24633
+          end        
+          item
+            Command = EcFoldLevel1
+            ShortCut = 41009
+          end        
+          item
+            Command = EcFoldLevel2
+            ShortCut = 41010
+          end        
+          item
+            Command = EcFoldLevel3
+            ShortCut = 41011
+          end        
+          item
+            Command = EcFoldLevel4
+            ShortCut = 41012
+          end        
+          item
+            Command = EcFoldLevel5
+            ShortCut = 41013
+          end        
+          item
+            Command = EcFoldLevel6
+            ShortCut = 41014
+          end        
+          item
+            Command = EcFoldLevel7
+            ShortCut = 41015
+          end        
+          item
+            Command = EcFoldLevel8
+            ShortCut = 41016
+          end        
+          item
+            Command = EcFoldLevel9
+            ShortCut = 41017
+          end        
+          item
+            Command = EcFoldLevel0
+            ShortCut = 41008
+          end        
+          item
+            Command = EcFoldCurrent
+            ShortCut = 41005
+          end        
+          item
+            Command = EcUnFoldCurrent
+            ShortCut = 41003
+          end        
+          item
+            Command = EcToggleMarkupWord
+            ShortCut = 32845
+          end        
+          item
+            Command = ecNormalSelect
+            ShortCut = 24654
+          end        
+          item
+            Command = ecColumnSelect
+            ShortCut = 24643
+          end        
+          item
+            Command = ecLineSelect
+            ShortCut = 24652
+          end        
+          item
+            Command = ecTab
+            ShortCut = 9
+          end        
+          item
+            Command = ecShiftTab
+            ShortCut = 8201
+          end        
+          item
+            Command = ecMatchBracket
+            ShortCut = 24642
+          end        
+          item
+            Command = ecColSelUp
+            ShortCut = 40998
+          end        
+          item
+            Command = ecColSelDown
+            ShortCut = 41000
+          end        
+          item
+            Command = ecColSelLeft
+            ShortCut = 40997
+          end        
+          item
+            Command = ecColSelRight
+            ShortCut = 40999
+          end        
+          item
+            Command = ecColSelPageDown
+            ShortCut = 40994
+          end        
+          item
+            Command = ecColSelPageBottom
+            ShortCut = 57378
+          end        
+          item
+            Command = ecColSelPageUp
+            ShortCut = 40993
+          end        
+          item
+            Command = ecColSelPageTop
+            ShortCut = 57377
+          end        
+          item
+            Command = ecColSelLineStart
+            ShortCut = 40996
+          end        
+          item
+            Command = ecColSelLineEnd
+            ShortCut = 40995
+          end        
+          item
+            Command = ecColSelEditorTop
+            ShortCut = 57380
+          end        
+          item
+            Command = ecColSelEditorBottom
+            ShortCut = 57379
+          end>
+        MouseActions = <>
+        MouseTextActions = <>
+        MouseSelActions = <>
+        MaxLeftChar = 8096
+        MaxUndo = 0
+        Options = [eoHideRightMargin, eoNoCaret, eoShowSpecialChars]
+        Options2 = []
+        VisibleSpecialChars = []
+        ReadOnly = True
+        RightEdge = 8096
+        RightEdgeColor = clNone
+        SelectedColor.ForePriority = 50
+        SelectedColor.BackPriority = 50
+        SelectedColor.FramePriority = 50
+        SelectedColor.BoldPriority = 50
+        SelectedColor.ItalicPriority = 50
+        SelectedColor.UnderlinePriority = 50
+        SelectedColor.StrikeOutPriority = 50
+        SelectedColor.ExtendPastEol = True
+        IncrementColor.Foreground = clNone
+        IncrementColor.Background = clNone
+        IncrementColor.ExtendPastEol = False
+        HighlightAllColor.Foreground = clNone
+        HighlightAllColor.Background = clNone
+        BracketHighlightStyle = sbhsBoth
+        BracketMatchColor.Foreground = clNone
+        BracketMatchColor.Background = clNone
+        BracketMatchColor.Style = [fsBold]
+        FoldedCodeColor.Foreground = clNone
+        FoldedCodeColor.Background = clNone
+        FoldedCodeColor.FrameColor = clGray
+        FoldedCodeColor.FrameEdges = sfeNone
+        MouseLinkColor.Foreground = clBlue
+        MouseLinkColor.Background = clNone
+        LineHighlightColor.Foreground = clNone
+        LineHighlightColor.Background = clNone
+        LineHighlightColor.FrameEdges = sfeNone
+        OnSpecialLineMarkup = CommandOutputScreenSpecialLineMarkup
+        inline SynLeftGutterPartList1: TSynGutterPartList
+        end
+      end
+    end
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog
     Options = [ofHideReadOnly, ofPathMustExist, ofNoNetworkButton, ofEnableSizing, ofViewDetail]
-    Left = 507
-    Top = 139
+    Left = 952
+    Top = 200
   end
   object MainMenu1: TMainMenu
-    Left = 363
-    Top = 75
+    Left = 960
+    Top = 432
     object MenuFile: TMenuItem
       Caption = '&File'
       object MenuItem6: TMenuItem
@@ -2251,8 +2169,8 @@ object Form1: TForm1
     end
   end
   object ActionList1: TActionList
-    Left = 507
-    Top = 75
+    Left = 944
+    Top = 96
     object actFileExit: TFileExit
       Category = 'File'
       Caption = 'E&xit'
@@ -2270,15 +2188,15 @@ object Form1: TForm1
     StoredValues = <>
     OnSavingProperties = IniPropStorageAppSavingProperties
     OnRestoringProperties = IniPropStorageAppRestoringProperties
-    Left = 363
-    Top = 139
+    Left = 1160
+    Top = 224
   end
   object ImageList_32x32: TImageList
     Height = 32
     Scaled = True
     Width = 32
-    Left = 363
-    Top = 216
+    Left = 1032
+    Top = 456
     Bitmap = {
       4C7A0F0000002000000020000000223500000000000078DAED7D075894D7F2F7
       5A62494C72536FA2C6C4581263BBB1448D899AC4C41635162C281604EC15ECA2
@@ -4440,8 +4358,8 @@ object Form1: TForm1
     Height = 32
     Scaled = True
     Width = 88
-    Left = 507
-    Top = 216
+    Left = 1328
+    Top = 256
     Bitmap = {
       4C7A020000005800000020000000D21700000000000078DAED5B07545557BA66
       44D3C6C9BCF7E6BD292F33192793F2321A53105B6C4C341A1BB1571489822808
@@ -5467,8 +5385,8 @@ object Form1: TForm1
     Height = 40
     Scaled = True
     Width = 200
-    Left = 640
-    Top = 216
+    Left = 960
+    Top = 324
     Bitmap = {
       4C7A02000000C800000028000000701300000000000078DAED9D095855D5DAC7
       0101672D4B2C3ECD52E280389498A9F915014E69D9704B2CC4214321CD01AFDD

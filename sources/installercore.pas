@@ -1194,7 +1194,9 @@ begin
           CryptoSucceeded:=(FileExists(SafeGetApplicationPath+Crypto_DLL_Names_Up[i]+GetLibExt)) AND (FileExists(SafeGetApplicationPath+SSL_DLL_Names_Up[i]+GetLibExt));
           if CryptoSucceeded then
           begin
-            CryptoSucceeded:=InitSSLInterface(SSL_DLL_Names_Up[i]+GetLibExt,Crypto_DLL_Names_Up[i]+GetLibExt);
+            CryptoSucceeded:= InitSSLInterface(
+                    SSL_DLL_Names_Up[i]+GetLibExt,
+                    Crypto_DLL_Names_Up[i]+GetLibExt);
             if CryptoSucceeded then break;
           end;
           Inc(i);

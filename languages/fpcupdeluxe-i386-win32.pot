@@ -717,7 +717,8 @@ msgid "Get FPC for ESP32 [lx6] boards"
 msgstr ""
 
 #: tform1.extrasheet.caption
-msgid "Extras"
+msgctxt "tform1.extrasheet.caption"
+msgid "Tasks"
 msgstr ""
 
 #: tform1.extrasheet.hint
@@ -944,6 +945,10 @@ msgctxt "tform1.reallazurl.hint"
 msgid "Double click to allow editing"
 msgstr ""
 
+#: tform1.reallazurl.text
+msgid "URL"
+msgstr ""
+
 #: tform1.stablebtn.caption
 msgid "Stable"
 msgstr ""
@@ -954,6 +959,19 @@ msgstr ""
 
 #: tform1.statusmessage.text
 msgid "Sitting and waiting"
+msgstr ""
+
+#: tform1.tabsheet1.caption
+msgid "Log"
+msgstr ""
+
+#: tform1.tabsheet2.caption
+msgctxt "tform1.tabsheet2.caption"
+msgid "Extras"
+msgstr ""
+
+#: tform1.tabsheetstartnew.caption
+msgid "Start"
 msgstr ""
 
 #: tform1.tagsheet.caption
