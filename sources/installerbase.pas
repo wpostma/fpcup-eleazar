@@ -35,6 +35,7 @@ uses
   {$ifndef FPCONLY}
   InterfaceBase,
   LCLPlatformDef,
+  LazVersion,
   {$endif}
   SysUtils;
 

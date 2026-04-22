@@ -155,6 +155,9 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-dDisableRemoteLog"/>
+          </Other>
         </CompilerOptions>
       </Item4>
       <Item5 Name="win32curl">
