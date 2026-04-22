@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Lazarus/**)",
+      "Bash(echo \"no c:\\\\\\\\lazarus\")",
+      "Bash(python3 -)",
+      "Bash(python3 *)",
+      "Bash(unix2dos /c/FPC/fpcupdeluxe/build.ps1)",
+      "PowerShell(cd C:\\\\FPC\\\\fpcupdeluxe; powershell.exe -NoProfile -ExecutionPolicy Bypass -File build.ps1 2>&1)",
+      "Bash(sort echo *)",
+      "Bash(unix2dos /c/FPC/fpcupdeluxe/fpcupdeluxe.lpi)",
+      "Bash(unix2dos /c/FPC/fpcupdeluxe/sources/installerbase.pas)"
+    ]
+  }
+}

@@ -65,6 +65,8 @@ type
     chkGitlab: TCheckBox;
     ChkMakefileFPC: TButton;
     ChkMakefileLaz: TButton;
+    ComboBoxFPCTarget: TComboBox;
+    ComboBoxLazVer: TComboBox;
     CommandOutputScreen: TSynEdit;
     CreateStartup: TButton;
     CrossSheet: TTabSheet;
@@ -74,7 +76,6 @@ type
     FixesBtn: TBitBtn;
     FPCHistoryLabel: TLabel;
     FPCTagLabel: TLabel;
-    FPCVersionLabel: TLabel;
     grpCustomTasks: TGroupBox;
     HistorySheet: TTabSheet;
     ImageList_200x40: TImageList;
@@ -86,12 +87,10 @@ type
     InstallDirEdit: TEdit;
     LazarusHistoryLabel: TLabel;
     LazarusTagLabel: TLabel;
-    LazarusVersionLabel: TLabel;
     ListBoxFPCHistoryNew: TListView;
-    ListBoxFPCTarget: TListBox;
+    ComboBoxFPCTargetTag: TListBox;
     ListBoxFPCTargetTag: TListBox;
     ListBoxLazarusHistoryNew: TListView;
-    ListBoxLazarusTarget: TListBox;
     ListBoxLazarusTargetTag: TListBox;
     listModules: TListBox;
     MainMenu1: TMainMenu;
@@ -139,6 +138,7 @@ type
     MIssuesForum: TMenuItem;
     StableBtn: TBitBtn;
     SelectDirectoryDialog1: TSelectDirectoryDialog;
+    StatusMessage: TEdit;
     {$ifdef READER}
     CommandOutputScreen: TMemo;
     FPCVersionLabel: TStaticText;
@@ -167,7 +167,6 @@ type
     OPMBtn: TButton;
     ESPBtn: TButton;
     {$else}
-    StatusMessage: TEdit;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheetStartNew: TTabSheet;
@@ -270,7 +269,7 @@ type
     procedure InstallModule(aModule:string; UnInstall:boolean);
     function  GetFPCUPSettings(IniDirectory:string):boolean;
     function  SetFPCUPSettings(IniDirectory:string):boolean;
-    procedure FillSourceListboxes;
+    procedure FillSourceComboBox;
     procedure AddMessage(const aMessage:string; const UpdateStatus:boolean=false);
     procedure SetTarget(aControl:TControl;const aTarget:string='');
     procedure InitFPCupManager;
@@ -731,7 +730,7 @@ begin
     if (chkGitlab.Checked<>bGitlab) then chkGitlab.Checked:=bGitlab;
     if (Length(aFPCTarget)>0) then FPCTarget:=aFPCTarget;
     if (Length(aLazarusTarget)>0) then LazarusTarget:=aLazarusTarget;
-    FillSourceListboxes;
+    FillSourceComboBox;
 
     // create settings form
     // must be done here, to enable local storage/access of some setttings !!
@@ -777,7 +776,7 @@ begin
       if Assigned(Items.Objects[i]) then
         StrDispose(Pchar(Items.Objects[i]));
   end;
-  with ListBoxFPCTargetTag do
+  with ComboBoxFPCTargetTag do
   begin
     for i:=Pred(Count) downto 0 do
       if Assigned(Items.Objects[i]) then
@@ -1552,14 +1551,19 @@ end;
 
 
 procedure TForm1.BitBtnHaltClick(Sender: TObject);
+var
+  Result:TModalResult;
 begin
-  if (MessageDlgEx('I am going to try to halt.' + sLineBreak +
+  Result := MessageDlgEx('I am going to try to halt.' + sLineBreak +
              'Do not (yet) expect too much of it.' + sLineBreak +
              'Its a non-finished feature !'
-             ,mtConfirmation,[mbYes, mbNo],Self)<>mrYes) then
-             begin
-               exit;
-             end;
+             ,mtConfirmation,[mbYes, mbNo],Self);
+
+  if Result = mrNo then
+  begin
+    exit;
+  end;
+
   if Assigned(FPCupManager.Sequencer) then
   begin
     FPCupManager.Sequencer.Kill;
@@ -2001,7 +2005,7 @@ var
   aListBox:TListBox;
   s:string;
 begin
-  if (Sender=BitBtnFPCOnlyTag) then aListBox:=ListBoxFPCTargetTag;
+  if (Sender=BitBtnFPCOnlyTag) then aListBox:=ComboBoxFPCTargetTag;
   if (Sender=BitBtnLazarusOnlyTag) then aListBox:=ListBoxLazarusTargetTag;
   with aListBox do
   begin
@@ -2015,25 +2019,25 @@ end;
 
 procedure TForm1.AddTag(Sender: TObject;aName,aTag:string);
 begin
-  if (Sender=ListBoxFPCTargetTag) OR (Sender=ListBoxFPCTarget)  then
+  if (Sender=ComboBoxFPCTargetTag) OR (Sender=ComboBoxFPCTarget)  then
   begin
     if SetAlias(FPCTAGLOOKUPMAGIC,aName+GITLABEXTENSION,aTag) then
     begin
-      ListBoxFPCTarget.Items.CommaText:=installerUniversal.GetAlias(FPCURLLOOKUPMAGIC,'list');
+      ComboBoxFPCTarget.Items.CommaText:=installerUniversal.GetAlias(FPCURLLOOKUPMAGIC,'list');
       MemoAddTag.Lines.Clear;
       MemoAddTag.Lines.Add('The tag ['+aTag+'] with name ['+aName+'] was added to the FPC sources list.');
     end;
   end;
-  if (Sender=ListBoxLazarusTargetTag) OR (Sender=ListBoxLazarusTarget) then
+  if (Sender=ListBoxLazarusTargetTag) OR (Sender=ComboBoxLazVer) then
   begin
     if SetAlias(LAZARUSTAGLOOKUPMAGIC,aName+GITLABEXTENSION,aTag) then
     begin
-      ListBoxLazarusTarget.Items.CommaText:=installerUniversal.GetAlias(LAZARUSURLLOOKUPMAGIC,'list');
+      ComboBoxLazVer.Items.CommaText:=installerUniversal.GetAlias(LAZARUSURLLOOKUPMAGIC,'list');
       MemoAddTag.Lines.Clear;
       MemoAddTag.Lines.Add('The tag ['+aTag+'] with name ['+aName+'] was added to the Lazarus sources list.');
     end;
   end;
-  FillSourceListboxes;
+  FillSourceComboBox;
   ScrollToSelected;
 end;
 
@@ -2373,7 +2377,7 @@ begin
   Fixes:=false;
   if ((Sender=btnGetLazarusFixes) OR (Sender=btnGetFPCFixes)) then Fixes:=True;
 
-  if aTarget=FPC then aTargetListBox:=ListBoxFPCTargetTag;
+  if aTarget=FPC then aTargetListBox:=ComboBoxFPCTargetTag;
   if aTarget=LAZARUS then aTargetListBox:=ListBoxLazarusTargetTag;
 
   if Fixes then aLabel:='fixes'
@@ -3853,8 +3857,8 @@ begin
           begin
             AddMessage('Successfully extracted cross-tools.');
             // run again with the correct libs and binutils
-            FPCVersionLabel.Font.Color:=clDefault;
-            LazarusVersionLabel.Font.Color:=clDefault;
+            //FPCVersionLabel.Font.Color:=clDefault;
+            //LazarusVersionLabel.Font.Color:=clDefault;
             AddMessage('Got all tools now. Building a cross-compiler for '+GetOS(FPCupManager.CrossOS_Target)+'-'+GetCPU(FPCupManager.CrossCPU_Target),True);
             memoSummary.Lines.Append('Got all tools. Started to build cross-compiler.');
             if Assigned(FPCupManager.Sequencer) then FPCupManager.Sequencer.ResetAllExecuted;
@@ -4204,16 +4208,19 @@ begin
       end;
     end;
     if (NOT (Components[i] is TControl)) then continue;
+
     c := Components[i] AS TControl;
-    if (Sender<>nil) then
-    begin
-      if c is TLabel then continue;
-      if c is TPanel then continue;
-      if c is TGroupBox then continue;
-      if c = BitBtnHalt then continue;
-      if c = CommandOutputScreen then continue;
-      if c = memoSummary then continue;
-    end;
+    if c is TLabel then continue;
+    if c is TPanel then continue;
+    if c is TGroupBox then continue;
+    if c is TPageControl then continue;
+    if c is TTabSheet then continue;
+
+    if c = BitBtnHalt then continue;
+    if c = CommandOutputScreen then continue;
+    if c = memoSummary then continue;
+
+
     c.Enabled := value;
   end;
 end;
@@ -4247,8 +4254,8 @@ begin
     end;
   end;
 
-  FPCVersionLabel.Font.Color:=clDefault;
-  LazarusVersionLabel.Font.Color:=clDefault;
+  //FPCVersionLabel.Font.Color:=clDefault;
+  //LazarusVersionLabel.Font.Color:=clDefault;
 
   RealFPCURL.Color:=clDefault;
   RealLazURL.Color:=clDefault;
@@ -4552,11 +4559,15 @@ begin
           StatusMessage.Text:='Something went wrong due to missing system tools or dev-libs !';
         end;
       end;
-      FPCVersionLabel.Font.Color:=clRed;
-      LazarusVersionLabel.Font.Color:=clRed;
+      //FPCVersionLabel.Font.Color:=clRed;
+      //LazarusVersionLabel.Font.Color:=clRed;
+      StatusMessage.Font.Color := clRed;
+
     end
     else
     begin
+      StatusMessage.Font.Color := clDefault;
+
       AddMessage('');
       AddMessage('');
       AddMessage('SUCCESS: installation by fpcupdeluxe complete !');
@@ -4577,8 +4588,8 @@ begin
       end;
       AddMessage('');
 
-      FPCVersionLabel.Font.Color:=clLime;
-      LazarusVersionLabel.Font.Color:=clLime;
+      //FPCVersionLabel.Font.Color:=clLime;
+      //LazarusVersionLabel.Font.Color:=clLime;
       StatusMessage.Text:='That went well !!!';
 
       s:=FPCupManager.FPCDesiredRevision;
@@ -4822,14 +4833,14 @@ begin
 
       if FPCTarget<>'skip' then
       begin
-        if (ListBoxFPCTarget.ItemIndex<>-1) then
-          WriteString('Target','fpcVersion',ListBoxFPCTarget.GetSelectedText);
+        if (ComboBoxFPCTarget.ItemIndex<>-1) then
+          WriteString('Target','fpcVersion',ComboBoxFPCTarget.Text );
       end;
 
       if LazarusTarget<>'skip' then
       begin
-        if (ListBoxLazarusTarget.ItemIndex<>-1) then
-          WriteString('Target','lazVersion',ListBoxLazarusTarget.GetSelectedText);
+        if (ComboBoxLazVer.ItemIndex<>-1) then
+          WriteString('Target','lazVersion',ComboBoxLazVer.Text);
       end;
 
       if (radgrpCPU.ItemIndex<>-1) then WriteInteger('Cross','CPUTarget',radgrpCPU.ItemIndex);
@@ -4935,44 +4946,49 @@ procedure TForm1.SetTarget(aControl:TControl;const aTarget:string='');
 var
   i:integer;
   aEdit:TEdit;
-  aListBox:TListBox;
+  aCombo:TComboBox;
   change:boolean;
   aLocalTarget:string;
   aLocalAlias:string;
 begin
   aEdit:=nil;
-  aListBox:=nil;
+  aCombo :=nil;
   change:=false;
   aLocalTarget:=aTarget;
 
-  if (aControl is TEdit) then aEdit:=TEdit(aControl);
-  if (aControl is TListBox) then aListBox:=TListBox(aControl);
+  if (aControl is TEdit) then
+     aEdit:=TEdit(aControl);
 
-  if (aListBox=nil) then
+  if (aControl is TComboBox) then
+     aCombo:=TComboBox(aControl);
+
+
+  if (aCombo =nil) then
   begin
     if aEdit=RealFPCURL then
-      aListBox:=ListBoxFPCTarget;
+      aCombo := ComboBoxFPCTarget;
     if aEdit=RealLazURL then
-      aListBox:=ListBoxLazarusTarget;
+      aCombo := ComboBoxLazVer;
   end;
 
   if (aEdit=nil) then
   begin
-    if aListBox=ListBoxFPCTarget then
-      aEdit:=RealFPCURL;
-    if aListBox=ListBoxLazarusTarget then
-      aEdit:=RealLazURL;
+    if aCombo = ComboBoxFPCTarget then
+      aEdit :=RealFPCURL;
+    if aCombo = ComboBoxLazVer then
+      aEdit :=RealLazURL;
   end;
 
-  if (aListBox.HandleAllocated) AND (aListBox.ItemIndex<>-1) AND (Length(aLocalTarget)=0) then aLocalTarget:=aListBox.GetSelectedText;
+  if  Assigned(aCombo) and (aCombo.HandleAllocated) AND (aCombo.ItemIndex<>-1) AND (Length(aLocalTarget)=0) then
+     aLocalTarget:= ACombo.Text;
 
-  if (aEdit=nil) OR (aListBox=nil) OR (Length(aLocalTarget)=0)then
+  if (aEdit=nil) OR (aCombo=nil) OR (Length(aLocalTarget)=0)then
   begin
     ShowMessage('Something serious went wrong when setting target FPC and/or Lazarus target.');
     exit;
   end;
 
-  if (aListBox=ListBoxFPCTarget) then
+  if (aCombo=ComboBoxFPCTarget) then
   begin
     if AnsiEndsText(GITLABEXTENSION,aLocalTarget) then
     begin
@@ -4982,7 +4998,7 @@ begin
       begin
         //  Store the value provided as a new tag
         aLocalAlias:=Copy(aLocalTarget,1,Length(aLocalTarget)-Length(GITLABEXTENSION));
-        AddTag(aListBox,aLocalAlias,aLocalAlias);
+        AddTag( aCombo, aLocalAlias,aLocalAlias);
         // Default to stable in case of lookup failure
         //aLocalTarget:='stable'+GITLABEXTENSION;
       end;
@@ -4991,7 +5007,7 @@ begin
     else
       aLocalAlias:=installerUniversal.GetAlias(FPCURLLOOKUPMAGIC,aLocalTarget);
   end;
-  if (aListBox=ListBoxLazarusTarget) then
+  if (aCombo= ComboBoxLazVer) then
   begin
     if AnsiEndsText(GITLABEXTENSION,aLocalTarget) then
     begin
@@ -5001,7 +5017,7 @@ begin
       begin
         //  Store the value provided as a new tag
         aLocalAlias:=Copy(aLocalTarget,1,Length(aLocalTarget)-Length(GITLABEXTENSION));
-        AddTag(aListBox,aLocalAlias,aLocalAlias);
+        AddTag(aCombo, aLocalAlias,aLocalAlias);
         // Default to stable in case of lookup failure
         //aLocalTarget:='stable'+GITLABEXTENSION;
       end;
@@ -5014,12 +5030,12 @@ begin
   //if (i>0) then
   //  Delete(aLocalAlias,i,4);
 
-  if (aListBox=ListBoxFPCTarget) then
+  if (aCombo =ComboBoxFPCTarget) then
   begin
     change:=(aLocalTarget<>FFPCTarget);
     if change then FFPCTarget:=aLocalTarget;
   end;
-  if (aListBox=ListBoxLazarusTarget) then
+  if (aCombo = ComboBoxLazVer) then
   begin
     change:=(aLocalTarget<>FLazarusTarget);
     if change then FLazarusTarget:=aLocalTarget;
@@ -5029,13 +5045,13 @@ begin
   begin
     if (NOT (aControl is TListBox)) then
     begin
-      if (aListBox.Items.Count>0) then
+      if (aCombo.Items.Count>0) then
       begin
-        i:=aListBox.Items.IndexOf(aLocalTarget);
+        i:=aCombo.Items.IndexOf(aLocalTarget);
         if (i<>-1) then
-          aListBox.Selected[i]:=true
+          aCombo.ItemIndex := i
         else
-          aListBox.ClearSelection;
+          aCombo.ItemIndex := -1;
       end;
     end;
     aEdit.Text:=aLocalAlias;
@@ -5080,7 +5096,7 @@ begin
   //PicoBtn.Enabled:=(NOT TCheckBox(Sender).Checked);
   //UltiboBtn.Enabled:=(NOT TCheckBox(Sender).Checked);
 
-  FillSourceListboxes;
+  FillSourceComboBox;
 
   ScrollToSelected;
 end;
@@ -5194,8 +5210,10 @@ end;
 
 procedure TForm1.ScrollToSelected(Data: PtrInt);
 begin
-  if (ListBoxFPCTarget.HandleAllocated) AND (ListBoxFPCTarget.ItemIndex>8) then ListBoxFPCTarget.MakeCurrentVisible;
-  if (ListBoxLazarusTarget.HandleAllocated) AND (ListBoxLazarusTarget.ItemIndex>8) then ListBoxLazarusTarget.MakeCurrentVisible;
+  //if (ComboBoxFPCTarget.HandleAllocated) AND (ComboBoxFPCTarget.ItemIndex>8) then ComboBoxFPCTarget.MakeCurrentVisible;
+
+  //if (ListBoxLazarusTarget.HandleAllocated) AND (ListBoxLazarusTarget.ItemIndex>8) then ListBoxLazarusTarget.MakeCurrentVisible;
+
 end;
 
 procedure TForm1.ParseRevisions(IniDirectory:string);
@@ -5362,29 +5380,29 @@ begin
   CommandOutputScreen.Font.Name:=aValue;
 end;
 
-procedure TForm1.FillSourceListboxes;
+procedure TForm1.FillSourceComboBox;
 var
   aFPCKeyword,aLazarusKeyword:string;
   aList:TStringList;
   i:integer;
 begin
-  if (ListBoxFPCTarget.SelCount=1)
-    then aFPCKeyword:=ListBoxFPCTarget.GetSelectedText
+  if (ComboBoxFPCTarget.ItemIndex>=0) then
+     aFPCKeyword:= ComboBoxFPCTarget.Text
   else
-    aFPCKeyword:=FPCTarget;
+     aFPCKeyword:= FPCTarget;
 
-  if (ListBoxLazarusTarget.SelCount=1)
-    then aLazarusKeyword:=ListBoxLazarusTarget.GetSelectedText
+  if (ComboBoxLazVer.ItemIndex>=0) then
+     aLazarusKeyword:= ComboBoxLazVer.Text
   else
-    aLazarusKeyword:=LazarusTarget;
+    aLazarusKeyword := LazarusTarget;
 
   aList:=TStringList.Create;
   try
     aList.Clear;
 
-    ListBoxFPCTarget.Items.BeginUpdate;
-    ListBoxFPCTarget.Items.Clear;
-    if ListBoxFPCTarget.Count=0 then
+    ComboBoxFPCTarget.Items.BeginUpdate;
+    ComboBoxFPCTarget.Items.Clear;
+    if ComboBoxFPCTarget.Items.Count=0 then
     begin
       if chkGitlab.Checked then
       begin
@@ -5393,15 +5411,15 @@ begin
       else
         aList.CommaText:=installerUniversal.GetAlias(FPCURLLOOKUPMAGIC,'list');
       if chkGitlab.Checked then aList.CustomSort(@NaturalCompare);
-      ListBoxFPCTarget.Items.AddStrings(aList);
+      ComboBoxFPCTarget.Items.AddStrings(aList);
     end;
-    ListBoxFPCTarget.Items.EndUpdate;
+    ComboBoxFPCTarget.Items.EndUpdate;
 
     aList.Clear;
 
-    ListBoxLazarusTarget.Items.BeginUpdate;
-    ListBoxLazarusTarget.Items.Clear;
-    if ListBoxLazarusTarget.Count=0 then
+    ComboBoxLazVer.Items.BeginUpdate;
+    ComboBoxLazVer.Items.Clear;
+    if ComboBoxLazVer.Items.Count=0 then
     begin
       if chkGitlab.Checked then
       begin
@@ -5410,24 +5428,24 @@ begin
       else
         aList.CommaText:=installerUniversal.GetAlias(LAZARUSURLLOOKUPMAGIC,'list');
       if chkGitlab.Checked then aList.CustomSort(@NaturalCompare);
-      ListBoxLazarusTarget.Items.AddStrings(aList);
+      ComboBoxLazVer.Items.AddStrings(aList);
     end;
-    ListBoxLazarusTarget.Items.EndUpdate;
+    ComboBoxLazVer.Items.EndUpdate;
 
   finally
     aList.Free;
   end;
 
-  if ((Length(aFPCKeyword)>0) AND (ListBoxFPCTarget.Items.Count>0)) then
+  if ((Length(aFPCKeyword)>0) AND (ComboBoxFPCTarget.Items.Count>0)) then
   begin
-    i:=ListBoxFPCTarget.Items.IndexOf(aFPCKeyword);
+    i:=ComboBoxFPCTarget.Items.IndexOf(aFPCKeyword);
     if (i<>-1) then
       FPCTarget:=aFPCKeyword;
   end;
 
-  if ((Length(aLazarusKeyword)>0) AND (ListBoxLazarusTarget.Items.Count>0)) then
+  if ((Length(aLazarusKeyword)>0) AND (ComboBoxLazVer.Items.Count>0)) then
   begin
-    i:=ListBoxLazarusTarget.Items.IndexOf(aLazarusKeyword);
+    i:=ComboBoxLazVer.Items.IndexOf(aLazarusKeyword);
     if (i<>-1) then
       LazarusTarget:=aLazarusKeyword;
   end;
