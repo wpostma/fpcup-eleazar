@@ -26,8 +26,8 @@
         <UsageCount Value="200"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="4185"/>
-        <CursorPos X="128" Y="4203"/>
+        <TopLine Value="4186"/>
+        <CursorPos X="128" Y="4204"/>
       </Unit1>
       <Unit2>
         <Filename Value="sources\updeluxe\extrasettings.pas"/>
@@ -4718,123 +4718,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="1435" Column="26" TopLine="1396"/>
+        <Caret Line="2771" Column="28" TopLine="2732"/>
       </Position1>
       <Position2>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="2771" Column="28" TopLine="2732"/>
+        <Caret Line="2772" Column="28" TopLine="2733"/>
       </Position2>
       <Position3>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="2772" Column="28" TopLine="2733"/>
+        <Caret Line="2774" Column="20" TopLine="2735"/>
       </Position3>
       <Position4>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="2774" Column="20" TopLine="2735"/>
+        <Caret Line="2830" Column="28" TopLine="2791"/>
       </Position4>
       <Position5>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="2830" Column="28" TopLine="2791"/>
+        <Caret Line="2831" Column="28" TopLine="2792"/>
       </Position5>
       <Position6>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="2831" Column="28" TopLine="2792"/>
+        <Caret Line="2833" Column="20" TopLine="2794"/>
       </Position6>
       <Position7>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="2833" Column="20" TopLine="2794"/>
+        <Caret Line="2983" Column="16" TopLine="2943"/>
       </Position7>
       <Position8>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="2983" Column="16" TopLine="2943"/>
+        <Caret Line="3156" Column="18" TopLine="3117"/>
       </Position8>
       <Position9>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3156" Column="18" TopLine="3117"/>
+        <Caret Line="3157" Column="18" TopLine="3118"/>
       </Position9>
       <Position10>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3157" Column="18" TopLine="3118"/>
+        <Caret Line="3158" Column="18" TopLine="3119"/>
       </Position10>
       <Position11>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3158" Column="18" TopLine="3119"/>
+        <Caret Line="3178" Column="20" TopLine="3139"/>
       </Position11>
       <Position12>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3178" Column="20" TopLine="3139"/>
+        <Caret Line="3179" Column="20" TopLine="3140"/>
       </Position12>
       <Position13>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3179" Column="20" TopLine="3140"/>
+        <Caret Line="3180" Column="20" TopLine="3141"/>
       </Position13>
       <Position14>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3180" Column="20" TopLine="3141"/>
+        <Caret Line="3259" Column="22" TopLine="3220"/>
       </Position14>
       <Position15>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3259" Column="22" TopLine="3220"/>
+        <Caret Line="3260" Column="22" TopLine="3221"/>
       </Position15>
       <Position16>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3260" Column="22" TopLine="3221"/>
+        <Caret Line="3275" Column="22" TopLine="3241"/>
       </Position16>
       <Position17>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3275" Column="22" TopLine="3241"/>
+        <Caret Line="3276" Column="22" TopLine="3241"/>
       </Position17>
       <Position18>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3276" Column="22" TopLine="3241"/>
+        <Caret Line="3277" Column="24" TopLine="3241"/>
       </Position18>
       <Position19>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3277" Column="24" TopLine="3241"/>
+        <Caret Line="3297" Column="54" TopLine="3255"/>
       </Position19>
       <Position20>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3297" Column="54" TopLine="3255"/>
+        <Caret Line="3309" Column="22" TopLine="3270"/>
       </Position20>
       <Position21>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3309" Column="22" TopLine="3270"/>
+        <Caret Line="3310" Column="22" TopLine="3271"/>
       </Position21>
       <Position22>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3310" Column="22" TopLine="3271"/>
+        <Caret Line="3511" Column="18" TopLine="3478"/>
       </Position22>
       <Position23>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3511" Column="18" TopLine="3478"/>
+        <Caret Line="3573" Column="77" TopLine="3564"/>
       </Position23>
       <Position24>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3573" Column="77" TopLine="3564"/>
+        <Caret Line="3575" Column="24" TopLine="3564"/>
       </Position24>
       <Position25>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3575" Column="24" TopLine="3564"/>
+        <Caret Line="3867" Column="24" TopLine="3834"/>
       </Position25>
       <Position26>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3867" Column="24" TopLine="3834"/>
+        <Caret Line="3871" Column="24" TopLine="3834"/>
       </Position26>
       <Position27>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="3871" Column="24" TopLine="3834"/>
+        <Caret Line="4120" Column="16" TopLine="4085"/>
       </Position27>
       <Position28>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="4120" Column="16" TopLine="4085"/>
+        <Caret Line="4124" Column="16" TopLine="4085"/>
       </Position28>
       <Position29>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="4124" Column="16" TopLine="4085"/>
+        <Caret Line="4125" Column="16" TopLine="4085"/>
       </Position29>
       <Position30>
         <Filename Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Caret Line="4125" Column="16" TopLine="4085"/>
+        <Caret Line="4203" Column="128" TopLine="4185"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -4849,49 +4849,49 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Line Value="4992"/>
+        <Line Value="4993"/>
       </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Line Value="1560"/>
+        <Line Value="1561"/>
       </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Line Value="2052"/>
+        <Line Value="2053"/>
       </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Line Value="2026"/>
+        <Line Value="2027"/>
       </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Line Value="2024"/>
+        <Line Value="2025"/>
       </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Line Value="2467"/>
+        <Line Value="2468"/>
       </Item>
       <Item>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="sources\updeluxe\fpcupdeluxemainform.pas"/>
-        <Line Value="2015"/>
+        <Line Value="2016"/>
       </Item>
     </BreakPoints>
   </Debugging>

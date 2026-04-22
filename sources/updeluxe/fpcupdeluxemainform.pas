@@ -78,6 +78,7 @@ type
     FPCTagLabel: TLabel;
     grpCustomTasks: TGroupBox;
     HistorySheet: TTabSheet;
+    Image1: TImage;
     ImageList_200x40: TImageList;
     ImageList_32x32: TImageList;
     ImageList_88x32: TImageList;
