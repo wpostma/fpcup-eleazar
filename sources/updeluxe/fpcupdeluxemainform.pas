@@ -607,12 +607,8 @@ begin
   aDataClient.UpInfo.UpWidget:=aSystemTarget;
   {$endif}
 
-  Form1.Caption:=
-  'FPCUPdeluxe V'+
-    DELUXEVERSION+
-    ' for ' +
-    GetSourceCPUOS+
-    '-'+
+  Form1.Caption :=
+  'fpc/Lazarus Installer '+
     aSystemTarget;
 
   sStatus:='Sitting and waiting';
@@ -769,25 +765,25 @@ var
 begin
   //if Assigned(Form3) then Form3.Destroy;
   //if Assigned(SettingsForm) then SettingsForm.Destroy;
-
-  with listModules do
-  begin
-    for i:=Pred(Count) downto 0 do
-      if Assigned(Items.Objects[i]) then
-        StrDispose(Pchar(Items.Objects[i]));
-  end;
-  with ComboBoxFPCTargetTag do
-  begin
-    for i:=Pred(Count) downto 0 do
-      if Assigned(Items.Objects[i]) then
-        StrDispose(Pchar(Items.Objects[i]));
-  end;
-  with ListBoxLazarusTargetTag do
-  begin
-    for i:=Pred(Count) downto 0 do
-      if Assigned(Items.Objects[i]) then
-        StrDispose(Pchar(Items.Objects[i]));
-  end;
+//
+//  with listModules do
+//  begin
+//    for i:=Pred(Count) downto 0 do
+//      if Assigned(Items.Objects[i]) then
+//        StrDispose(Pchar(Items.Objects[i]));
+//  end;
+//  with ComboBoxFPCTargetTag do
+//  begin
+//    for i:=Pred(Count) downto 0 do
+//      if Assigned(Items.Objects[i]) then
+//        StrDispose(Pchar(Items.Objects[i]));
+//  end;
+//  with ListBoxLazarusTargetTag do
+//  begin
+//    for i:=Pred(Count) downto 0 do
+//      if Assigned(Items.Objects[i]) then
+//        StrDispose(Pchar(Items.Objects[i]));
+//  end;
 
 
   {$ifdef RemoteLog}
@@ -1563,7 +1559,7 @@ begin
   begin
     exit;
   end;
-
+                StatusMessage.Text := 'Stopped/Aborted';
   if Assigned(FPCupManager.Sequencer) then
   begin
     FPCupManager.Sequencer.Kill;
@@ -2001,20 +1997,24 @@ begin
 end;
 
 procedure TForm1.OnlyTagClick(Sender: TObject);
-var
-  aListBox:TListBox;
-  s:string;
+//var
+//  aCombo:TComboBox;
+//  s:string;
 begin
-  if (Sender=BitBtnFPCOnlyTag) then aListBox:=ComboBoxFPCTargetTag;
-  if (Sender=BitBtnLazarusOnlyTag) then aListBox:=ListBoxLazarusTargetTag;
-  with aListBox do
-  begin
-    if (ItemIndex<>-1) then
-    begin
-      s:=StrPas(Pchar(Items.Objects[ItemIndex]));
-      AddTag(aListBox,Items[ItemIndex],s);
-    end;
-  end;
+  //if (Sender=BitBtnFPCOnlyTag) then
+  //  aCombo=ComboBoxFPCTargetTag;
+  //
+  //if (Sender=BitBtnLazarusOnlyTag) then
+  //  aCombo:=ComboBoxLazVer;
+  //
+  //with aCombo do
+  //begin
+  //  if (ItemIndex<>-1) then
+  //  begin
+  //    s:=StrPas(Pchar(Items.Objects[ItemIndex]));
+  //    AddTag(aComboBox,Items[ItemIndex],s);
+  //  end;
+  //end;
 end;
 
 procedure TForm1.AddTag(Sender: TObject;aName,aTag:string);
@@ -2047,10 +2047,13 @@ var
 begin
   if User then
   begin
-    aListBox:=TListBox(Sender);
-    MemoAddTag.Lines.Clear;
-    MemoAddTag.Lines.Add('Name: '+aListBox.GetSelectedText);
-    MemoAddTag.Lines.Add('Tag: '+StrPas(Pchar(aListBox.Items.Objects[aListBox.ItemIndex])));
+    if (Sender is TListBox) then
+    begin
+      aListBox:=TListBox(Sender);
+      MemoAddTag.Lines.Clear;
+      MemoAddTag.Lines.Add('Name: '+aListBox.GetSelectedText);
+      MemoAddTag.Lines.Add('Tag: '+StrPas(Pchar(aListBox.Items.Objects[aListBox.ItemIndex])));
+    end;
   end;
 end;
 
@@ -2395,8 +2398,9 @@ begin
   begin
     for i:=Pred(Count) downto 0 do
       if Assigned(Items.Objects[i]) then
-        StrDispose(Pchar(Items.Objects[i]));
+       StrDispose(Pchar(Items.Objects[i]));
   end;
+
   aTargetListBox.Items.Clear;
 
   aFileList:=TStringList.Create;
@@ -4118,7 +4122,7 @@ begin
   if (Sender=btnSendLog) then
   begin
     memoSummary.Lines.Append('');
-    memoSummary.Lines.Append('Sending email to "fpcupdeluxe@gmail.com" with content of command screen !');
+    memoSummary.Lines.Append('Sending email to "fpcupdeluxe@gmail.com" with content of the logs.');
     SendMail('smtp.gmail.com',
              'Fpcupdeluxe log report',
              'fpcupdeluxe@gmail.com',
@@ -4219,6 +4223,7 @@ begin
     if c = BitBtnHalt then continue;
     if c = CommandOutputScreen then continue;
     if c = memoSummary then continue;
+    if c = StatusMessage then continue;
 
 
     c.Enabled := value;
@@ -4546,7 +4551,7 @@ begin
         // skip reporting trivial errors about missing things
         if (NOT MissingTools) then
         begin
-          StatusMessage.Text:='Hmmm, something went wrong ... have a good look at the command screen !';
+          StatusMessage.Text:='Hmmm, something went wrong ... have a good look at the logs.';
           AddMessage(FPCupManager.RunInfo);
           {$ifdef RemoteLog}
           aDataClient.UpInfo.LogEntry:='ERROR: Fpcupdeluxe fatal error !';
