@@ -4,6 +4,7 @@ First version:  https://bitbucket.org/reiniero/fpcup<br/>
 Second version: https://github.com/LongDirtyAnimAlf/Reiniero-fpcup<br/>
 Third version:  https://github.com/newpascal/fpcupdeluxe<br/>
 
+![screenshot](screenshot.png)
 
 [![License](https://img.shields.io/badge/license-zlib%2Flibpng-blue.svg)](LICENSE)
 
