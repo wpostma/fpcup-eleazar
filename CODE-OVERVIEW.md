@@ -1,7 +1,8 @@
 # FPCUPDELUXE Code Overview
 
 ## Purpose
-FPCUPDELUXE is an installer and updater for the Free Pascal Compiler (FPC) and Lazarus IDE. It automates downloading, building, and configuring FPC/Lazarus for a wide range of platforms, supporting both command-line and GUI operation.
+This readme orients you to the key unit names and function names, in the codebase of FPCUPDELUXE, which is an installer and updater for the Free Pascal Compiler (FPC) and Lazarus IDE. 
+The code executes external tools like the Freepascal compiler, gnu assember, and other gnu binutils to compile, and link binaries.
 
 ## Main Entry Points
 
