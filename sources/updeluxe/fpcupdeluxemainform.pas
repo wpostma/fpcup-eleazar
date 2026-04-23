@@ -1550,19 +1550,11 @@ end;
 
 
 procedure TForm1.BitBtnHaltClick(Sender: TObject);
-var
-  Result:TModalResult;
 begin
-  Result := MessageDlgEx('I am going to try to halt.' + sLineBreak +
-             'Do not (yet) expect too much of it.' + sLineBreak +
-             'Its a non-finished feature !'
-             ,mtConfirmation,[mbYes, mbNo],Self);
-
-  if Result = mrNo then
-  begin
+  if MessageDlg('Stop the current operation?', mtConfirmation, [mbYes, mbNo], 0) <> mrYes then
     exit;
-  end;
-                StatusMessage.Text := 'Stopped/Aborted';
+  BitBtnHalt.Enabled := false;
+  StatusMessage.Text := 'Stopping...';
   if Assigned(FPCupManager) and Assigned(FPCupManager.Sequencer) then
     FPCupManager.Sequencer.Kill;
 end;

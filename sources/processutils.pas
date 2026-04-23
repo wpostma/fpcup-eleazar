@@ -160,6 +160,9 @@ type
   TExternalToolThread = class(TObject)
   {$endif}
   private
+    {$ifdef THREADEDEXECUTE}
+    FCritSec: TRTLCriticalSection;
+    {$endif}
     fLines: TStringList;
     FTool: TExternalTool;
     procedure SetTool(AValue: TExternalTool);
@@ -167,7 +170,12 @@ type
   public
     property Tool: TExternalTool read FTool write SetTool;
     {$ifdef THREADEDEXECUTE}
+    constructor Create(CreateSuspended: Boolean);
     procedure Execute; override;
+    // Main thread calls these to synchronize with the worker thread.
+    // Safe to call only while FThread is known non-nil (i.e. Stage=etsRunning).
+    procedure MainThreadBeginWork;
+    procedure MainThreadEndWork;
     {$else}
     procedure Execute;
     {$endif}
@@ -206,6 +214,7 @@ type
   end;
 
   procedure ThreadLog(const aMsg: string;{%H-}const aEvent:TEventType=etInfo);
+  procedure DebugLog(const aMsg: string; const aTag: string = '');
 
 implementation
 
@@ -810,13 +819,9 @@ begin
   if NeedProcTerminate and (Process<>nil) then
   begin
     Process.Terminate(AbortedExitCode);
-    {$IF FPC_FULLVERSION < 30300}
-    Process.WaitOnExit;
-    {$ELSE}
-    Process.WaitOnExit(5000);
-    {$ENDIF}
-    //To check !!
-    //fTerminated:=false;
+    // Do NOT call Process.WaitOnExit here — it blocks the main thread.
+    // The worker thread exits its loop when Stage <> etsRunning, calls
+    // ProcessStopped (setting Stage=etsStopped), and WaitForExit unblocks.
   end;
 end;
 
@@ -1198,6 +1203,24 @@ begin
   end;
 end;
 
+{$ifdef THREADEDEXECUTE}
+constructor TExternalToolThread.Create(CreateSuspended: Boolean);
+begin
+  inherited Create(CreateSuspended);
+  InitCriticalSection(FCritSec);
+end;
+
+procedure TExternalToolThread.MainThreadBeginWork;
+begin
+  System.EnterCriticalSection(FCritSec);
+end;
+
+procedure TExternalToolThread.MainThreadEndWork;
+begin
+  System.LeaveCriticalSection(FCritSec);
+end;
+{$endif}
+
 procedure TExternalToolThread.SetTool(AValue: TExternalTool);
 begin
   if FTool=AValue then Exit;
@@ -1357,34 +1380,43 @@ begin
 
       OutputLine:='';
       StdErrLine:='';
+      HasOutput:=false;
       LastUpdate:=GetTickCount64;
-      while (Tool<>nil) and (Tool.Stage=etsRunning) do
+      while (Tool<>nil) do
       begin
-        if Tool.ReadStdOutBeforeErr then begin
-          HasOutput:=ReadInputPipe(Tool.Process.Output,OutputLine,false)
-                  or ReadInputPipe(Tool.Process.Stderr,StdErrLine,true);
-        end else begin
-          HasOutput:=ReadInputPipe(Tool.Process.Stderr,StdErrLine,true)
-                  or ReadInputPipe(Tool.Process.Output,OutputLine,false);
+        // Hold FCritSec during I/O work; release before sleep so the main
+        // thread can call MainThreadBeginWork/EndWork between iterations.
+        {$ifdef THREADEDEXECUTE}
+        System.EnterCriticalSection(FCritSec);
+        {$endif}
+        try
+          if (Tool=nil) or (Tool.Stage<>etsRunning) then break;
+          if Tool.ReadStdOutBeforeErr then begin
+            HasOutput:=ReadInputPipe(Tool.Process.Output,OutputLine,false)
+                    or ReadInputPipe(Tool.Process.Stderr,StdErrLine,true);
+          end else begin
+            HasOutput:=ReadInputPipe(Tool.Process.Stderr,StdErrLine,true)
+                    or ReadInputPipe(Tool.Process.Output,OutputLine,false);
+          end;
+          if (not HasOutput) then
+          begin
+            if not Tool.Process.Running then break;
+          end;
+          if (fLines.Count>0)
+          and (Abs(int64(GetTickCount64)-LastUpdate)>UpdateTimeDiff) then
+          begin
+            Tool.AddOutputLines(fLines);
+            fLines.Clear;
+            LastUpdate:=GetTickCount64;
+          end;
+          if Assigned(Tool.OnUpdateEvent) then Tool.OnUpdateEvent(self,Tool.Stage);
+        finally
+          {$ifdef THREADEDEXECUTE}
+          System.LeaveCriticalSection(FCritSec);
+          {$endif}
         end;
-        if (not HasOutput) then
-        begin
-          if not Tool.Process.Running then break;
-        end;
-        if (fLines.Count>0)
-        and (Abs(int64(GetTickCount64)-LastUpdate)>UpdateTimeDiff) then
-        begin
-          Tool.AddOutputLines(fLines);
-          fLines.Clear;
-          LastUpdate:=GetTickCount64;
-        end;
-
-        if Assigned(Tool.OnUpdateEvent) then Tool.OnUpdateEvent(self,Tool.Stage);
-
         if (not HasOutput) then
           sleep(50);
-        //else
-        //  sleep(0);// allow context swith
       end;
       // add rest of output
 
@@ -1438,6 +1470,9 @@ end;
 destructor TExternalToolThread.Destroy;
 begin
   FTool:=nil;
+  {$ifdef THREADEDEXECUTE}
+  DoneCriticalSection(FCritSec);
+  {$endif}
   inherited Destroy;
 end;
 
@@ -1487,6 +1522,56 @@ begin
   writeln(aMsg);
 end;
 {$endif}
+
+var
+  GDebugLogCS: TRTLCriticalSection;
+  GDebugLogFile: Text;
+  GDebugLogOpen: boolean = false;
+
+procedure DebugLog(const aMsg: string; const aTag: string = '');
+var
+  line: string;
+  logPath: string;
+begin
+  System.EnterCriticalSection(GDebugLogCS);
+  try
+    if not GDebugLogOpen then
+    begin
+      logPath := ExtractFilePath(ParamStr(0)) + 'fpcupdeluxe_debug.log';
+      AssignFile(GDebugLogFile, logPath);
+      try
+        Rewrite(GDebugLogFile);
+        GDebugLogOpen := true;
+      except
+        exit;
+      end;
+    end;
+    if aTag <> '' then
+      line := FormatDateTime('hh:nn:ss.zzz', Now) + ' [' + IntToHex(GetCurrentThreadId, 4) + '] [' + aTag + '] ' + aMsg
+    else
+      line := FormatDateTime('hh:nn:ss.zzz', Now) + ' [' + IntToHex(GetCurrentThreadId, 4) + '] ' + aMsg;
+    WriteLn(GDebugLogFile, line);
+    Flush(GDebugLogFile);
+  finally
+    System.LeaveCriticalSection(GDebugLogCS);
+  end;
+end;
+
+initialization
+  InitCriticalSection(GDebugLogCS);
+
+finalization
+  System.EnterCriticalSection(GDebugLogCS);
+  try
+    if GDebugLogOpen then
+    begin
+      CloseFile(GDebugLogFile);
+      GDebugLogOpen := false;
+    end;
+  finally
+    System.LeaveCriticalSection(GDebugLogCS);
+  end;
+  DoneCriticalSection(GDebugLogCS);
 
 end.
 
